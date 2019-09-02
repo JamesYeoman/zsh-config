@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+printf "$1%.s" $(seq 1 ${2:-1})
