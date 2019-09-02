@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# This is more portable
+# (tr on Mac interprets input as UTF-8 and so you have to export LC_CTYPE=C to the environment of tr)
+perl -pe 'binmode(STDIN, ":bytes"); tr/A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+=//dc;'

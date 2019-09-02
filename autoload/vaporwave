@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+local pattern
+pattern='s/./&'"$(rep ' ' "$2")"'/g'
+echo "$1" | sed "$pattern" | xclip -selection clipboard
