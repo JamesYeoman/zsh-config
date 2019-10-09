@@ -14,4 +14,4 @@ alias copy_to_clipboard='xclip -selection clipboard'
 
 alias trash='gio trash'
 
-alias stopAllDockerContainers="docker container stop $(docker container ls -aq)"
+alias listAllRunningContainers='docker container ls -aq'
