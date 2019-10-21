@@ -12,6 +12,6 @@ alias mvn="mvn --settings ${HOME}/.local/etc/m2/settings.xml"
 
 alias copy_to_clipboard='xclip -selection clipboard'
 
-alias trash='gio trash'
+#alias trash='gio trash'
 
 alias listAllRunningContainers='docker container ls -aq'
