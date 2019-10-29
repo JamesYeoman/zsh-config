@@ -3,15 +3,15 @@ source "${SHELL_CONF}/aliases.zsh"
 source "${SHELL_CONF}/exports.zsh"
 source "${SHELL_CONF}/functions.zsh"
 
-if command -v jenv 2>/dev/null; then
+if command -v jenv &>/dev/null; then
 	eval "$(jenv init -)"
 fi
 
-if command -v pyenv 2>/dev/null; then
-	eval "${pyenv init -}"
+if command -v pyenv &>/dev/null; then
+	eval "$(pyenv init -)"
 fi
 
-if command -v nodenv 2>/dev/null; then
+if command -v nodenv &>/dev/null; then
 	eval "$(nodenv init -)"
 fi
 
