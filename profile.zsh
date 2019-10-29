@@ -3,9 +3,17 @@ source "${SHELL_CONF}/aliases.zsh"
 source "${SHELL_CONF}/exports.zsh"
 source "${SHELL_CONF}/functions.zsh"
 
-eval "$(jenv init -)"
-eval "$(pyenv init -)"
-eval "$(nodenv init -)"
+if command -v jenv 2>/dev/null; then
+	eval "$(jenv init -)"
+fi
+
+if command -v pyenv 2>/dev/null; then
+	eval "${pyenv init -}"
+fi
+
+if command -v nodenv 2>/dev/null; then
+	eval "$(nodenv init -)"
+fi
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
 [ -e "${PERSONAL_ETC}/fzf/fzf.zsh" ] && source "${PERSONAL_ETC}/fzf/fzf.zsh"
