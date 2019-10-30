@@ -1,11 +1,10 @@
-ENV_COMMANDS=( jenv pyenv nodenv sbtenv )
-TOADDTOPATH=()
-function addToPath() {
-    return ( "${PERSONAL_ETC}/${1}/bin" "${path[@]}" )
+ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv")
+getPath() {
+    printf "${PERSONAL_ETC}/${1}/bin"
 }
 
 for cmnd in $ENV_COMMANDS; do
-    path=$(addToPath $cmnd)
+    path=("$(getPath "$cmnd")" "${path[@]}")
 done
 
 export -u path 
