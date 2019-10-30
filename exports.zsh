@@ -11,15 +11,11 @@ export NODENV_ROOT="${PERSONAL_ETC}/nodenv"
 export HELM_INSTALL="/opt/helm"
 
 toaddtopath=(
-	"${NODENV_ROOT}/bin"
-	"${PYENV_ROOT}/bin"
-	"${JENV_ROOT}/bin"
 	"${PERSONAL_INSTALL}/bin"
 	"${CARGO_DIR}/bin"
 	"${HELM_INSTALL}/bin"
 )
 
 export -u path=("${toaddtopath[@]}" "${path[@]}")
-
-export VISUAL=micro
 export EDITOR="${VISUAL}"
+
