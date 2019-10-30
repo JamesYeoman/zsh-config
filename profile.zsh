@@ -2,22 +2,7 @@ source "${SHELL_CONF}/antigen.zsh"
 source "${SHELL_CONF}/aliases.zsh"
 source "${SHELL_CONF}/exports.zsh"
 source "${SHELL_CONF}/functions.zsh"
-
-if testForCommand jenv; then
-	eval "$(jenv init -)"
-fi
-
-if testForCommand pyenv; then
-	eval "$(pyenv init -)"
-fi
-
-if testForCommand nodenv; then
-	eval "$(nodenv init -)"
-fi
-
-if testForCommand sbtenv; then
-    eval "$(sbtenv init -)"
-fi
+source "${SHELL_CONF}/envs.zsh"
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
 [ -e "${PERSONAL_ETC}/fzf/fzf.zsh" ] && source "${PERSONAL_ETC}/fzf/fzf.zsh"
