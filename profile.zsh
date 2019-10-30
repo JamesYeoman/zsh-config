@@ -3,16 +3,20 @@ source "${SHELL_CONF}/aliases.zsh"
 source "${SHELL_CONF}/exports.zsh"
 source "${SHELL_CONF}/functions.zsh"
 
-if command -v jenv &>/dev/null; then
+if testForCommand jenv; then
 	eval "$(jenv init -)"
 fi
 
-if command -v pyenv &>/dev/null; then
+if testForCommand pyenv; then
 	eval "$(pyenv init -)"
 fi
 
-if command -v nodenv &>/dev/null; then
+if testForCommand nodenv; then
 	eval "$(nodenv init -)"
+fi
+
+if testForCommand sbtenv; then
+    eval "$(sbtenv init -)"
 fi
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
