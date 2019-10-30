@@ -5,9 +5,7 @@ export fpath=(
     "${fpath[@]}"
 )
 
-autoload -Uz urandom_filter
-autoload -Uz randomchar
-autoload -Uz readablepath
-autoload -Uz sortedreadablepath
-autoload -Uz installzshfont
+for file in "${SHELL_CONF}/autoload"/**/*(.); do
+    autoload -Uz $(basename $file)
+done
 
