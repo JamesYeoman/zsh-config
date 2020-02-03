@@ -1,17 +1,18 @@
-ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv")
-getPath() {
-    printf "${PERSONAL_ETC}/${1}/bin"
-}
+ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv" "scalaenv" "goenv")
+RUST_COMMANDS=("cargo" "rustup")
 
 for cmnd in $ENV_COMMANDS; do
-    path=("$(getPath "$cmnd")" "${path[@]}")
+    dynamicExportIfExists "${PERSONAL_ETC}" "${cmnd}" "_ROOT"
 done
 
-export -u path 
+for cmnd in $RUST_COMMANDS; do
+    dynamicExportIfExists "${PERSONAL_ETC}" "${cmnd}" "_HOME"
+done
+
+export -U PATH
 
 for cmnd in $ENV_COMMANDS; do
-    if testForCommand $cmnd; then
+    if testForCommand "$cmnd"; then
         eval "$("$cmnd" init -)"
     fi
 done
-
