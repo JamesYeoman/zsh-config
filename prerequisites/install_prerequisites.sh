@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )/prerequisites"
+SCRIPTPATH="$( realpath "$(dirname "$0")" )"
 
 echo "Installing base dependencies"
 bash "${SCRIPTPATH}/deps.sh"
