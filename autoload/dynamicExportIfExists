@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+prefixLoc=$1
+cmnd=$2
+varSuffix=$3
+
+if [ -e "${prefixLoc}/${cmnd}" ]; then
+    eval "export ${cmnd:u}${varSuffix}="${prefixLoc}/${cmnd}""
+    export PATH="$(eval "echo "\${${cmnd:u}${varSuffix}}/bin""):${PATH}"
+fi
