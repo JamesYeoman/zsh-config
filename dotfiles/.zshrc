@@ -1,60 +1,47 @@
-#!/usr/bin/env zsh
-
-# The root folder of all the files that have been created
-# from extracting configuration from .zshrc
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename "${HOME}/.zshrc"
+export TERM=xterm-256color
 export SHELL_CONF="${HOME}/.config/zsh"
+export CLOUDSDK_HOME="/usr/lib/google-cloud-sdk"
 [[ ! -d "${SHELL_CONF}" ]] && mkdir -p "${SHELL_CONF}"
 
-# For files like .zcompdump and .history
-export ZSH_JUNK="${HOME}/.local/etc/zsh"
-[[ ! -d "${ZSH_JUNK}" ]] && mkdir -p "${ZSH_JUNK}"
+sourceIfExists() {
+    [[ -e "$1" ]] && source "$1"
+}
 
-# User Binaries
-export MY_BIN="${HOME}/.local/bin"
-[[ ! -d "${MY_BIN}" ]] && mkdir -p "${MY_BIN}"
+sourceIfExists "${SHELL_CONF}/antigen.zsh"
+sourceIfExists "${SHELL_CONF}/exports.zsh"
+sourceIfExists "${SHELL_CONF}/opts.zsh"
+sourceIfExists "${SHELL_CONF}/functions.zsh"
+sourceIfExists "${SHELL_CONF}/envs.zsh"
+sourceIfExists "${SHELL_CONF}/aliases.zsh"
 
-# Maven User Folder (settings.xml and the maven repo)
-export M2_HOME="${HOME}/.local/etc/m2"
-[[ ! -d "${M2_HOME}" ]] && mkdir "${M2_HOME}"
+# Sets the window title to the current directory
+case $TERM in
+  xterm*)
+    precmd () {print -Pn "\e]0;%~\a"}
+    ;;
+esac
 
-# Executes the user's ZSH configuration (if it exists)
-[[ -e "${SHELL_CONF}/profile.zsh" ]] && source "${SHELL_CONF}/profile.zsh"
+# fzf is Fuzzy Find tool https://github.com/junegunn/fzf
+sourceIfExists "${PERSONAL_ETC}/fzf/fzf.zsh"
 
-# Makes sure the history file exists where we want it to
-export HISTFILE="${ZSH_JUNK}/.history"
-[[ ! -e $HISTFILE ]] && touch $HISTFILE
+export fpath=( "${PERSONAL_ETC}/zsh/completions" "${fpath[@]}" )
 
-export COMPDUMPFILE="${ZSH_JUNK}/.zcompdump"
-
-# The default size of the history file is so damn small. Let's fix that
-export HISTSIZE=100000
-export HISTFILESIZE=100000
-
-# Just as a nice addition. Personal taste and all that
-export COMPLETION_WAITING_DOTS="true"
-
-# ISO FORMAT!!!!! WOOP!!!!!
-export HIST_STAMPS="yyyy-mm-dd"
-
-# Makes ZSH append to the history file rather than making a new one each time
-setopt inc_append_history
-
-# Shares the ZSH History across sessions
-setopt share_history
-
-# When cycling through the history, any duplicates will be filtered out
-setopt HIST_FIND_NO_DUPS
-
-# The next line updates PATH for the Google Cloud SDK.
-[[ -e "${HOME}/google-cloud-sdk/path.zsh.inc" ]] && source "${HOME}/google-cloud-sdk/path.zsh.inc"
-
-# The next line enables shell command completion for gcloud.
-[[ -e "${HOME}/google-cloud-sdk/completion.zsh.inc" ]] && source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+updateGoogleCompletions() {
+  local compFolder
+  compFolder="${PERSONAL_ETC}/zsh/completions"
+  tee "$compFolder/_gcloud" <<-EOF >/dev/null
+#compdef gcloud
+EOF
+  cat "/usr/share/google-cloud-sdk/completion.zsh.inc" >> "$compFolder/_gcloud"
+  kubectl completion zsh > "$compFolder/_kubectl"
+  rm ${HOME}/.zcompdump
+  compinit -d "$HOME/.zcompdump"
+}
 
 # Used by the Snap Store tool
 emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
 
 # Exports path in a way that there will be no duplicate path items from shell re-initialisation
 export -U PATH
-
-autoload -Uz compinit && compinit -d "${ZSH_JUNK}/.zcompdump"
