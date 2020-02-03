@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 export fpath=(
     "${SHELL_CONF}"/autoload
     "${fpath[@]}"
