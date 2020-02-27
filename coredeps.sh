@@ -17,17 +17,6 @@ toInstall=(
     "xclip"
 )
 
-if [[ "$1" -eq "include-gui-deps" ]]; then
-    toInstall+=(
-        "compiz"
-        "mesa-utils"
-        "mesa-utils-extra"
-        "xwayland"
-        "wayland-protocols"
-        "gnome-session-wayland"
-    )
-fi
-
 echo "Ensuring base ubuntu deps are installed"
 sudo apt -qqy install "${toInstall[@]}"
 
