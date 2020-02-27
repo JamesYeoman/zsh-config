@@ -13,6 +13,6 @@ export -U PATH
 
 for cmnd in $ENV_COMMANDS; do
     if testForCommand "$cmnd"; then
-        eval "$("$cmnd" init -)"
+        eval "$("$cmnd" init - zsh)" || eval "$("$cmnd" init -)"
     fi
 done
