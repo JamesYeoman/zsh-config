@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo wget -q -O \
+sudo wget -qO \
 "/usr/share/fonts/opentype/DroidSansMonoNerdFontCompleteMono.otf" \
 "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf?raw=true"
 
