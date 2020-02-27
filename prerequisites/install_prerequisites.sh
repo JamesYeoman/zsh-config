@@ -27,4 +27,14 @@ bash "${SCRIPTPATH}/nodenv.sh"
 bash "${SCRIPTPATH}/pyenv.sh"
 printf "Done\n\n"
 
-echo "Not auto-installing Jetbrains Toolbox. If you want it installed, there's a script provided to install it"
+echo "Installing the Yarn package manager for node"
+bash "${SCRIPTPATH}/yarn.sh"
+printf "Done\n\n"
+
+echo "Not auto-installing editors, because they're preferences."
+echo "If you want to have either of the following editors installed, there are scripts provided"
+printf "\tJetbrains Toolbox (for Intellij IDEA)\n"
+printf "\tVS Code\n\n"
+
+echo "Also, if you're running this on a dev machine (i.e. you have a GUI)"
+echo "there's an optional script called additional-gui-deps.sh"
