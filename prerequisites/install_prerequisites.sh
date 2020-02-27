@@ -34,4 +34,7 @@ printf "Done\n\n"
 echo "Not auto-installing editors, because they're preferences."
 echo "If you want to have either of the following editors installed, there are scripts provided"
 printf "\tJetbrains Toolbox (for Intellij IDEA)\n"
-printf "\tVS Code\n"
+printf "\tVS Code\n\n"
+
+echo "Also, if you're running this on a dev machine (i.e. you have a GUI)"
+echo "there's an optional script called additional-gui-deps.sh"
