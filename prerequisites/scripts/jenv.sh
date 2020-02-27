@@ -15,3 +15,6 @@ JDK_VERSIONS+=(adoptopenjdk-13-hotspot adoptopenjdk-13-hotspot-jre)
 for version in "${JDK_VERSIONS[@]}"; do
     jenv add "/usr/lib/jvm/${version}-amd64"
 done
+
+jenv enable-plugin maven
+jenv enable-plugin export

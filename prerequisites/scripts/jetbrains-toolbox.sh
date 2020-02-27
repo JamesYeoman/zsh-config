@@ -2,7 +2,7 @@
 
 mkdir -p ${HOME}/.local/bin
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
-wget -qO- $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
+curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
 
 cat > "${HOME}/.config/autostart/jetbrains-toolbox.desktop" << EOF
 [Desktop Entry]
