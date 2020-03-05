@@ -13,6 +13,7 @@
 
   <servers>
     <server>
+          <!-- If you use a repository manager (i.e. Nexus), auth will be handled -->
     	<id>nexus</id>
     	<username>${env.NEXUS_USERNAME}</username>
     	<password>${env.NEXUS_PASSWORD}</password>
@@ -20,11 +21,5 @@
   </servers>
   
   <mirrors>
-    <mirror>
-      <id>nexus</id>
-      <mirrorOf>central</mirrorOf>
-      <name>Appsbroker Nexus</name>
-      <url>https://ci2.appsbroker.com/nexus/repository/maven-central/</url>
-    </mirror>
   </mirrors>
 </settings>
