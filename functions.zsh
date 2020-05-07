@@ -1,9 +1,9 @@
 export fpath=(
-    "${SHELL_CONF}"/autoload
+    "${ZDOTDIR}"/autoload
     "${fpath[@]}"
 )
 
-for file in "${SHELL_CONF}/autoload"/**/*(.); do
+for file in "${ZDOTDIR}/autoload"/**/*(.); do
     autoload -Uz $(basename $file)
 done
 
