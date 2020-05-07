@@ -40,4 +40,3 @@ toaddtopath=(
 )
 
 export -U path=("${toaddtopath[@]}" "${path[@]}")
-export EDITOR="${VISUAL}"

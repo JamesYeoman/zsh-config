@@ -6,7 +6,7 @@ for cmnd in $ENV_COMMANDS; do
 done
 
 for cmnd in $RUST_COMMANDS; do
-    dynamicExportIfExists "${PERSONAL_ETC}" "${cmnd}" "_HOME"
+    dynamicExportIfExists "${XDG_DATA_HOME}" "${cmnd}" "_HOME"
 done
 
 export -U PATH
