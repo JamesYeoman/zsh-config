@@ -4,7 +4,7 @@ antigen use oh-my-zsh
 
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
-source $SHELL_CONF/powerlevel9kconfig.zsh
+source $ZDOTDIR/powerlevel9kconfig.zsh
 
 antigen bundle git
 antigen bundle pip
