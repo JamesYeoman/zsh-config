@@ -25,9 +25,11 @@ sudo ubuntu-drivers autoinstall
 
 echo "Installing config"
 mkdir -p "${HOME}/.config" # Ensure the config directory exists
-zsh_conf="${HOME}/.config/zsh"
-git clone "https://github.com/JamesYeoman/zsh-config.git" "${zsh_conf}"
-cp "${zsh_conf}/dotfiles/.zshrc" "${HOME}/.zshrc"
-mkdir -p "${HOME}/.local/etc/m2"
-cp "${zsh_conf}/dotfiles/settings.xml" "${HOME}/.local/etc/m2/settings.xml"
-bash "${zsh_conf}/prerequisites/install_prerequisites.sh"
+export ZDOTDIR="${HOME}/.config/zsh"
+git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
+cp "${ZDOTDIR}/dotfiles/.zshenv" "${HOME}/.zshenv"
+bash "${ZDOTDIR}/prerequisites/copy-to-profile-d.sh"
+mkdir -p "${HOME}/.config/m2"
+cp "${ZDOTDIR}/dotfiles/settings.xml" "${HOME}/.config/m2/settings.xml"
+bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
+echo "Please restart your machine in order to ensure the zshenv file gets loaded properly (because I don't know exactly the load rules for the zshenv file, but rebooting makes sure it gets loaded"
