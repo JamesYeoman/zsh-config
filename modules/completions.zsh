@@ -1,6 +1,6 @@
 compFolder="${XDG_DATA_HOME}/zsh/completions"
 
-export fpath=( "${compFolder}" "${fpath[@]}" )
+export -U fpath=( "${compFolder}" "${fpath[@]}" )
 
 updateGoogleCompletions() {
   echo "#compdef gcloud" > "${compFolder}/_gcloud"

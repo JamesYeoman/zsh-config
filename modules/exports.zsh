@@ -1,9 +1,3 @@
-#This is to allow the themes to be able to display the correct name in the prompt
-export DEFAULT_USER="$(whoami)"
-
-# Sets the window to just the current directory
-export DISABLE_AUTO_TITLE="true"
-
 export PERSONAL_INSTALL="${HOME}/.local"
 export PERSONAL_ETC="${PERSONAL_INSTALL}/etc"
 
@@ -17,16 +11,6 @@ export M2_HOME="${PERSONAL_ETC}/m2"
 [[ ! -d "${NEXUS_CREDS_LOC}" ]] && mkdir -p "${NEXUS_CREDS_LOC}"
 [[ ! -f "${NEXUS_CREDS_LOC}/username" ]] && touch "${NEXUS_CREDS_LOC}/username"
 [[ ! -f "${NEXUS_CREDS_LOC}/password" ]] && touch "${NEXUS_CREDS_LOC}/password"
-
-# The default size of the history file is so damn small. Let's fix that
-export HISTSIZE=100000
-export HISTFILESIZE=100000
-
-# Just as a nice addition. Personal taste and all that
-export COMPLETION_WAITING_DOTS="true"
-
-# ISO FORMAT!!!!! WOOP!!!!!
-export HIST_STAMPS="yyyy-mm-dd"
 
 export NEXUS_USERNAME="$(cat ${NEXUS_CREDS_LOC}/username)"
 export NEXUS_PASSWORD="$(cat ${NEXUS_CREDS_LOC}/password)"
