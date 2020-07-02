@@ -6,9 +6,11 @@ loadModule() {
   sourceIfExists "${ZMODDIR}/${1}.zsh"
 }
 
-mods=( core zsh_conf antigen exports opts functions envs xdg completions )
+mods=( zsh_conf antigen exports opts functions envs xdg completions )
 
-for file in aliases/*; do
+sourceIfExists "${ZDOTDIR}/modules/core.zsh"
+
+for file in "${ZMODDIR}/aliases/*"; do
   mods+=( "${file%.*}" )
 done
 
