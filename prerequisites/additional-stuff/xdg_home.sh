@@ -13,4 +13,3 @@ fi
 if [ -z "${XDG_CONFIG_HOME}" ]; then
   export XDG_CONFIG_HOME="${confighome}"
 fi
-
