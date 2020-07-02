@@ -1,2 +1,1 @@
-#!/usr/bin/env zsh
 echo "$(urandom_filter < /dev/urandom | fold -w "$1" | head -n 1)"
