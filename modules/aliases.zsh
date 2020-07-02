@@ -9,15 +9,13 @@ alias commitAll="git add .; git commit"
 alias dir-sizes="du -sh"
 
 # Uncomment these aliases if you end up using the aliases that uses exa
-#alias ela='exa -al --group-directories-first'
-#alias elh='ela --header'
-#alias elg="elh --git --git-ignore"
+alias ela='exa -al --group-directories-first'
+alias elh='ela --header'
+alias elg="elh --git --git-ignore"
 
 # Comment these aliases out if you end up using the aliases that use exa
 alias ll='ls -al --color --group-directories-first'
 alias la='ls -a --color --group-directories-first'
 
-alias mvn="mvn --settings ${XDG_CONFIG_HOME}/m2/settings.xml"
-
 alias copy_to_clipboard='xclip -selection clipboard'
-alias listAllRunningContainers='docker container ls -aq'
+alias allDocker='docker container ls -aq'
