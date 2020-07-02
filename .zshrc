@@ -21,7 +21,7 @@ for mod in $mods; do
 done
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
-sourceIfExists "${XDG_DATA_HOME}/fzf/fzf.zsh"
+sourceIfExists "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf.zsh"
 
 # Needs to be done right at the end, which is why it isn't included in $mods
 loadModule "finalise"
