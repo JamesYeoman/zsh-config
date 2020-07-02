@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-cp "${ZDOTDIR}/prerequisites/additional-stuff/*" /etc/profile.d/
+sudo cp "${ZDOTDIR}/prerequisites/profile.d/*" /etc/profile.d/

@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 prefixLoc=$1
 cmnd=$2
 varSuffix=$3
