@@ -10,9 +10,11 @@ mods=( zsh_conf antigen exports opts functions envs xdg completions )
 
 sourceIfExists "${ZDOTDIR}/modules/core.zsh"
 
-for file in "${ZMODDIR}/aliases/*"; do
+pushd "${ZMODDIR}" > /dev/null
+for file in aliases/*; do
   mods+=( "${file%.*}" )
 done
+popd > /dev/null
 
 for mod in $mods; do
   loadModule $mod
@@ -22,4 +24,4 @@ done
 sourceIfExists "${XDG_DATA_HOME}/fzf/fzf.zsh"
 
 # Needs to be done right at the end, which is why it isn't included in $mods
-sourceIfExists "${ZMODDIR}/finalise.zsh"
+loadModule "finalise"
