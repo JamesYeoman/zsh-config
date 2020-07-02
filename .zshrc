@@ -2,22 +2,23 @@ zstyle ':completion:*' completer _complete _ignored
 export CLOUDSDK_HOME="/usr/lib/google-cloud-sdk"
 export HISTFILE="${XDG_CACHE_HOME}/zsh/history"
 export EDITOR=vim
+export ZMODDIR="${ZDOTDIR}/modules"
 
 sourceIfExists() {
     [[ -e "$1" ]] && source "$1"
 }
 
-sourceIfExists "${ZDOTDIR}/antigen.zsh"
-sourceIfExists "${ZDOTDIR}/exports.zsh"
-sourceIfExists "${ZDOTDIR}/opts.zsh"
-sourceIfExists "${ZDOTDIR}/functions.zsh"
-sourceIfExists "${ZDOTDIR}/envs.zsh"
-sourceIfExists "${ZDOTDIR}/aliases.zsh"
-sourceIfExists "${ZDOTDIR}/xdg.zsh"
-sourceIfExists "${ZDOTDIR}/completions.zsh"
+sourceIfExists "${ZMODDIR}/antigen.zsh"
+sourceIfExists "${ZMODDIR}/exports.zsh"
+sourceIfExists "${ZMODDIR}/opts.zsh"
+sourceIfExists "${ZMODDIR}/functions.zsh"
+sourceIfExists "${ZMODDIR}/envs.zsh"
+sourceIfExists "${ZMODDIR}/aliases.zsh"
+sourceIfExists "${ZMODDIR}/xdg.zsh"
+sourceIfExists "${ZMODDIR}/completions.zsh"
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
-sourceIfExists "${PERSONAL_ETC}/fzf/fzf.zsh"
+sourceIfExists "${XDG_DATA_HOME}/fzf/fzf.zsh"
 
 # Sets the window title to the current directory
 case $TERM in
