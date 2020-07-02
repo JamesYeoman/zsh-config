@@ -13,7 +13,11 @@ sourceIfExists "${ZMODDIR}/exports.zsh"
 sourceIfExists "${ZMODDIR}/opts.zsh"
 sourceIfExists "${ZMODDIR}/functions.zsh"
 sourceIfExists "${ZMODDIR}/envs.zsh"
-sourceIfExists "${ZMODDIR}/aliases.zsh"
+
+for file in "${ZMODDIR}/aliases"/*; do
+  source "$file"
+done
+
 sourceIfExists "${ZMODDIR}/xdg.zsh"
 sourceIfExists "${ZMODDIR}/completions.zsh"
 
