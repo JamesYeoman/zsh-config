@@ -3,7 +3,7 @@ export fpath=(
     "${fpath[@]}"
 )
 
-for file in "${ZDOTDIR}/autoload"/**/*(.); do
-    autoload -Uz $(basename $file)
+for file in "${ZDOTDIR}/autoload"/*; do
+    autoload -Uz "$(basename "$file")"
 done
 
