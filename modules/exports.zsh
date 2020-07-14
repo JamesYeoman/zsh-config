@@ -1,13 +1,6 @@
-export PERSONAL_INSTALL="${HOME}/.local"
-export PERSONAL_ETC="${PERSONAL_INSTALL}/etc"
+export NEXUS_CREDS_LOC="${HOME_ROOT}/etc/dynamic/nexus"
 
-export NEXUS_CREDS_LOC="${PERSONAL_ETC}/dynamic/nexus"
-
-export MY_BIN="${PERSONAL_INSTALL}/bin"
-export M2_HOME="${PERSONAL_ETC}/m2"
-
-[[ ! -d "${MY_BIN}" ]] && mkdir -p "${MY_BIN}"
-[[ ! -d "${M2_HOME}" ]] && mkdir -p "${M2_HOME}"
+[[ ! -d "${HOME_ROOT}/bin" ]] && mkdir -p "${HOME_ROOT}/bin"
 [[ ! -d "${NEXUS_CREDS_LOC}" ]] && mkdir -p "${NEXUS_CREDS_LOC}"
 [[ ! -f "${NEXUS_CREDS_LOC}/username" ]] && touch "${NEXUS_CREDS_LOC}/username"
 [[ ! -f "${NEXUS_CREDS_LOC}/password" ]] && touch "${NEXUS_CREDS_LOC}/password"
@@ -15,10 +8,10 @@ export M2_HOME="${PERSONAL_ETC}/m2"
 export NEXUS_USERNAME="$(cat ${NEXUS_CREDS_LOC}/username)"
 export NEXUS_PASSWORD="$(cat ${NEXUS_CREDS_LOC}/password)"
 export HELM_INSTALL="/opt/helm"
-export GOBIN="${PERSONAL_INSTALL}/go/bin"
+export GOBIN="${XDG_DATA_HOME:-$HOME_ROOT/share}/go/bin"
 
 toaddtopath=(
-	"${MY_BIN}"
+	"${HOME_ROOT}/bin"
 	"${HELM_INSTALL}/bin"
 	"${GOBIN}"
 )
