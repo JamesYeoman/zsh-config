@@ -4,6 +4,7 @@ data_home="${XDG_DATA_HOME:-$HOME_ROOT/share}"
 
 # XDG_CONFIG_HOME variables
 export npm_config_userconfig="${conf_home}/npm/npmrc"
+export DOCKER_CONFIG="${conf_home}/docker"
 
 # XDG_CACHE_HOME variables
 export CUDA_CACHE_PATH="${cache_home}/nv"
@@ -17,3 +18,5 @@ export SONARLINT_USER_HOME="${cache_home}/sonarlint"
 export GRADLE_USER_HOME="${data_home}/gradle"
 export LESSHISTFILE="${data_home}/less/history"
 export MYSQL_HISTFILE="${data_home}/mysql/history"
+export MACHINE_STORAGE_PATH="${data_home}/docker-machine"
+export GNUPGHOME="${data_home}/gnupg"
