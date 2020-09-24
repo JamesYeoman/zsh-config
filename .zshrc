@@ -6,7 +6,7 @@ loadModule() {
   sourceIfExists "${ZMODDIR}/${1}.zsh"
 }
 
-mods=( "zsh_conf" "antigen" "exports" "opts" "functions" "envs" "xdg" "completions" "user_defs" )
+mods=( "user_defs" "zsh_conf" "antigen" "exports" "opts" "functions" "envs" "xdg" "completions" )
 
 sourceIfExists "${ZDOTDIR}/modules/core.zsh"
 
@@ -21,7 +21,7 @@ for mod in $mods; do
 done
 
 # fzf is Fuzzy Find tool https://github.com/junegunn/fzf
-sourceIfExists "${XDG_DATA_HOME:-$HOME_ROOT/share}/fzf/fzf.zsh"
+sourceIfExists "${XDG_CONFIG_HOME:-$HOME_ROOT/.config}/fzf/fzf.zsh"
 
 # Needs to be done right at the end, which is why it isn't included in $mods
 loadModule "finalise"

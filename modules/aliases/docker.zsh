@@ -1,3 +1,3 @@
 if testForCommand docker; then
-    alias allDocker='docker container ls -aq'
+    alias containers='docker container ls -aq'
 fi
