@@ -1,15 +1,17 @@
 #!/bin/bash
 
 SCRIPTPATH="$(realpath "$(dirname "$0")")/scripts"
+startOfSection() { printf "Installing ${1}\n" }
+endOfSection() { printf "Done\n\n" }
 
-echo "Installing ZSH"
+startOfSection "ZSH"
 sudo apt install -qqy zsh
-printf "Done\n\n"
+endOfSection
 
-echo "Installing Antigen to /usr/local/share/antigen"
+startOfSection "Antigen to /usr/local/share/antigen"
 bash "${SCRIPTPATH}/antigen.sh"
-printf "Done\n\n"
+endOfSection
 
-echo "Installing a font that has the required glyphs for the zsh theme"
+startOfSection "a font that has the required glyphs for the zsh theme"
 bash "${SCRIPTPATH}/zshfont.sh"
-printf "Done\n\n"
+endOfSection
