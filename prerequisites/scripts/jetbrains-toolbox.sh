@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-mkdir -p ${HOME}/.local/bin
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
 curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
+installationLoc="${XDG_DATA_HOME:-$HOME/.local/share}/JetBrains/Toolbox"
 
-cat > "${HOME}/.config/autostart/jetbrains-toolbox.desktop" << EOF
+cat > "${XDG_CONFIG_HOME:-$HOME/.config}/autostart/jetbrains-toolbox.desktop" << EOF
 [Desktop Entry]
-Exec=${HOME}/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
-Icon=${HOME}/.local/share/JetBrains/Toolbox/toolbox.svg
+Exec=${installationLoc}/bin/jetbrains-toolbox --minimize
+Icon=${installationLoc}/toolbox.svg
 MimeType=x-scheme-handler/jetbrains;
 Name=JetBrains Toolbox
 StartupNotify=false
