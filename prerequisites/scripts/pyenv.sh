@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/pyenv/pyenv.git ${HOME}/.local/share/pyenv
+git clone https://github.com/pyenv/pyenv.git "${XDG_DATA_HOME:-$HOME/.local/share}/pyenv"

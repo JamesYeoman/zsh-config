@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-JENV_ROOT="${HOME}/.local/share/jenv"
+JENV_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/jenv"
 git clone "https://github.com/jenv/jenv.git" ${JENV_ROOT}
 
 export PATH="${JENV_ROOT}/bin:${PATH}"
