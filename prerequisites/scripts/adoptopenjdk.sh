@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 echo "Adding the AdoptOpenJDK GPG Key"
-curl -fsSL https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+ADOPTOPENJDK_URL="https://adoptopenjdk.jfrog.io/adoptopenjdk"
+curl -fsSL "${ADOPTOPENJDK_URL}/api/gpg/key/public" | sudo apt-key add -
 
 echo "Adding the AdoptOpenJDK Repository"
-sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+sudo add-apt-repository --yes "${ADOPTOPENJDK_URL}/deb/"
 
 echo "Updating the Apt Cache"
 sudo apt update
