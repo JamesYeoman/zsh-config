@@ -1,4 +1,4 @@
-ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv" "scalaenv" "goenv")
+ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv" "scalaenv" "goenv" "rbenv")
 RUST_COMMANDS=("cargo" "rustup")
 
 for cmnd in $ENV_COMMANDS; do
