@@ -1,23 +1,24 @@
 #!/usr/bin/env bash
 
 SCRIPTPATH="$(realpath "$(dirname "$0")")/scripts"
+startOfSection() { printf "Installing ${1}\n" }
 endOfSection() { printf "Done\n\n" }
 
-echo "Installing Docker"
+startOfSection "Docker"
 bash "${SCRIPTPATH}/docker.sh"
 endOfSection
 
-echo "Installing AdoptOpenJDK versions of the JDK"
+startOfSection "AdoptOpenJDK versions of the JDK"
 bash "${SCRIPTPATH}/adoptopenjdk.sh"
 endOfSection
 
-echo "Installing the various 'env's"
+startOfSection "Java, Node, and Python version managers"
 bash "${SCRIPTPATH}/jenv.sh"
 bash "${SCRIPTPATH}/nodenv.sh"
 bash "${SCRIPTPATH}/pyenv.sh"
 endOfSection
 
-echo "Installing the Yarn package manager for node"
+startOfSection "the Yarn package manager for node"
 bash "${SCRIPTPATH}/yarn.sh"
 endOfSection
 
