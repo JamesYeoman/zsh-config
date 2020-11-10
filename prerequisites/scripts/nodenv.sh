@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-INST="${HOME}/.local/share/nodenv"
-git clone https://github.com/nodenv/nodenv.git ${INST}
+GROUP_URL="https://github.com/nodenv"
+INST="${XDG_DATA_HOME:-$HOME/.local.share}/nodenv"
+
+git clone "${GROUP_URL}/nodenv.git" ${INST}
 
 mkdir ${INST}/plugins
-git clone https://github.com/nodenv/node-build.git ${INST}/plugins/node-build
+git clone "${GROUP_URL}/node-build.git" ${INST}/plugins/node-build
