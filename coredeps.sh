@@ -19,5 +19,5 @@ sudo apt-get install -qq git
 export ZDOTDIR="${xdg_config}/zsh"
 git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
 
-[[ "$verboseSwitch" == "true" ]] && touch "${ZDOTDIR}/bootstrap/verbose"
-bash "${ZDOTDIR}/bootstrap/bootstrap.sh"
+[[ "$verboseSwitch" == "true" ]] && touch "${ZDOTDIR}/bootstrap/install/verbose"
+bash "${ZDOTDIR}/bootstrap/install/bootstrap.sh"

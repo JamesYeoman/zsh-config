@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BOOTSTRAP="${ZDOTDIR}/bootstrap"
+BOOTSTRAP="$(realpath $(dirname $0))"
 bash "${BOOTSTRAP}/update.sh"
 bash "${BOOTSTRAP}/config.sh"
 
