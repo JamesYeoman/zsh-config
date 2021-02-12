@@ -1,27 +1,16 @@
-sourceIfExists() {
-    [[ -e "$1" ]] && source "$1"
-}
+zstyle ':completion:*' completer _complete _ignored
 
-loadModule() {
-  sourceIfExists "${ZMODDIR}/${1}.zsh"
-}
+loadModule "interactive/antigen"
+loadModule "interactive/completions"
+loadModule "interactive/misc"
+loadModule "interactive/fzf"
 
-mods=( "user_defs" "zsh_conf" "antigen" "exports" "opts" "functions" "envs" "xdg" "completions" )
+# Sets the window title to the current directory
+case $TERM in
+  xterm*)
+    precmd () {print -Pn "\e]0;%~\a"}
+    ;;
+esac
 
-sourceIfExists "${ZDOTDIR}/modules/core.zsh"
-
-pushd "${ZMODDIR}" > /dev/null
-for file in aliases/*; do
-  mods+=( "${file%.*}" )
-done
-popd > /dev/null
-
-for mod in $mods; do
-  loadModule $mod
-done
-
-# fzf is Fuzzy Find tool https://github.com/junegunn/fzf
-sourceIfExists "${XDG_CONFIG_HOME:-$HOME_ROOT/.config}/fzf/fzf.zsh"
-
-# Needs to be done right at the end, which is why it isn't included in $mods
-loadModule "finalise"
+# Exports path in a way that there will be no duplicate path items from shell re-initialisation
+export -U PATH
