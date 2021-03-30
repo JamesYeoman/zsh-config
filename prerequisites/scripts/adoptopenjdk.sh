@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
-echo "Adding the AdoptOpenJDK GPG Key"
-ADOPTOPENJDK_URL="https://adoptopenjdk.jfrog.io/adoptopenjdk"
-curl -fsSL "${ADOPTOPENJDK_URL}/api/gpg/key/public" | sudo apt-key add -
+echo "Adding the AdoptOpenJDK APT Repo"
+SCRIPTLOC="$(realpath $(dirname $0))"
 
-echo "Adding the AdoptOpenJDK Repository"
-sudo add-apt-repository --yes "${ADOPTOPENJDK_URL}/deb/"
+REPO="https://adoptopenjdk.jfrog.io/adoptopenjdk"
+KEYCHAIN_NAME="apt.adoptopenjdk"
+
+# Download the apt key and install to the keychain
+pushd "${SCRIPTLOC}/../utils"
+./add-an-apt-repo.sh "${REPO}" \
+                     "${KEYCHAIN_NAME}" \
+                     "api/gpg/key/public" \
+                     "${REPO}/deb/ $(lsb_release -cs) main" \
+                     "adoptopenjdk"
+popd
 
 echo "Updating the Apt Cache"
 sudo apt update

@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 
-APT_URL="https://download.docker.com/linux/ubuntu"
-
 echo "Ensuring Ubuntu-maintained docker isn't installed"
 sudo apt-get remove docker docker-engine docker.io containerd runc \
     && echo "success" \
     || echo "An error occured. It's probably just that there were packages that weren't installed"
 
-echo "Adding Docker's GPG Key"
-curl -fsSL "${APT_URL}/gpg" | sudo apt-key add -
+SCRIPTLOC="$(realpath $(dirname $0))"
 
-echo "Adding the Docker PPA"
-sudo add-apt-repository "deb [arch=amd64] ${APT_URL} $(lsb_release -cs) stable"
-sudo apt update -qq
+REPO="https://download.docker.com/linux/ubuntu"
+KEYCHAIN_NAME="apt.docker"
+
+# Download the apt key and install to the keychain
+pushd "${SCRIPTLOC}/../utils"
+./add-an-apt-repo.sh "${REPO}" \
+                     "${KEYCHAIN_NAME}" \
+                     "gpg" \
+                     "[arch=amd64] ${REPO} $(lsb_release -cs) stable" \
+                     "docker"
+popd
 
 echo "Installing Docker"
 sudo apt install docker-ce docker-ce-cli containerd.io
