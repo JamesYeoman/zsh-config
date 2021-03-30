@@ -15,10 +15,12 @@ pushd "${SCRIPTLOC}/../utils"
 ./add-an-apt-repo.sh "${REPO}" \
                      "${KEYCHAIN_NAME}" \
                      "gpg" \
-                     "[arch=amd64] ${REPO} $(lsb_release -cs) stable" \
-                     "docker"
+                     "${REPO} $(lsb_release -cs) stable" \
+                     "docker" \
+                     "arch=amd64"
 popd
 
 echo "Installing Docker"
+sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io
 
