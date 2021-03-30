@@ -9,7 +9,7 @@ KEYCHAIN_NAME="apt.google.cloud"
 pushd "${SCRIPTLOC}/../utils"
 ./add-an-apt-repo.sh "${REPO}" \
                      "${KEYCHAIN_NAME}" \
-                     "docs/apt-key.gpg" \
+                     "doc/apt-key.gpg" \
                      "${REPO} cloud-sdk main" \
                      "google-cloud-sdk"
 popd
