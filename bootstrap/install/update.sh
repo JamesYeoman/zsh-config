@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-FOLDER="${dirname $0}"
-verboseLog() {bash -c "${FOLDER}/verboseLog.sh \"$1\""}
+FOLDER="$(realpath $(dirname $0))"
+verboseLog() {
+    bash -c "${FOLDER}/verboseLog.sh \"$1\""
+}
 
 verboseLog "Ensuring everything is up to date"
 sudo apt-get update -qq && sudo apt-get upgrade -qqy
