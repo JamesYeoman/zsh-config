@@ -1,5 +1,5 @@
 
-mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CACHE_HOME}/m2/repository"
+mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh"
 
 ETC_ZSH_ENV="\n\nexport ZDOTDIR=\"\${XDG_CONFIG_HOME:-\$HOME/.config}/zsh\"\n"
 
