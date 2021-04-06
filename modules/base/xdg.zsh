@@ -1,6 +1,6 @@
 conf_home="${XDG_CONFIG_HOME:-$HOME/.config}"
 cache_home="${XDG_CACHE_HOME:-$HOME/.cache}"
-data_home="${XDG_DATA_HOME:-$HOME_ROOT/share}"
+data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 # XDG_CONFIG_HOME variables
 export npm_config_userconfig="${conf_home}/npm/npmrc"
