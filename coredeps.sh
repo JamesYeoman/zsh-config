@@ -19,5 +19,13 @@ sudo apt-get install -qq git
 export ZDOTDIR="${xdg_config}/zsh"
 git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
 
-[[ "$verboseSwitch" == "true" ]] && touch "${ZDOTDIR}/bootstrap/install/verbose"
-bash "${ZDOTDIR}/bootstrap/install/bootstrap.sh"
+# Ensure defaults are set
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+source "${ZDOTDIR}/bootstrap/install/update.sh"
+source "${ZDOTDIR}/bootstrap/config.sh"
+
+bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
+echo "Please restart your machine in order to ensure the zshenv file gets loaded properly"
+echo "(because I don't know exactly the load rules for the zshenv file, but rebooting makes sure it gets loaded)"
