@@ -7,5 +7,8 @@ sudo wget -qO \
 echo "Download is now done! Refreshing the Font Cache"
 sudo fc-cache -f -v &>/dev/null 
 
+echo "Remember to set your terminal font to one of the DroidSansMono Nerdfont Mono variants."
+sleep 3s # This is to give the user time to actually see the above message
+
 echo "Font Installation complete!"
 
