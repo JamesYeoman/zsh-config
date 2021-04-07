@@ -19,3 +19,7 @@ for item in "${XDG_CACHE_HOME}"/m2/* ; do
 done
 
 ln -s "${XDG_CONFIG_HOME}/m2/settings.xml" "${HOME}/.m2/settings.xml"
+
+verboseLog "Since likely 99% of all scripts on your system use Bash,"
+verboseLog "it's necessary to give Bash access to XDG compliance."
+sudo ln -s "${ZDOTDIR}/prerequisites/profile.d/01_xdg_init.sh" "/etc/profile.d/01_xdg_init.sh"

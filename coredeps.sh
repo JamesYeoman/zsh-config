@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 verboseSwitch="$1"
 verboseSwitch="$([[ "$verboseSwitch" == "-v" ]] && echo "true" || echo "false")"
-verboseLog() { [[ "$verboseSwitch" == "true" ]] && echo "$1" }
+
+verboseLog() {
+  [[ "$verboseSwitch" == "true" ]] && echo "$1"
+}
 
 if ! command -v apt-get &>/dev/null; then
   echo "Not a debian-based system, not supported."
@@ -16,15 +19,13 @@ sudo echo "Successful" || (echo "Insufficient privilages" && exit 1)
 verboseLog "Installing git"
 sudo apt-get install -qq git
 
-export ZDOTDIR="${xdg_config}/zsh"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
 
-# Ensure defaults are set
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-
+source "${ZDOTDIR}/prerequisites/xdg/home.sh"
+source "${ZDOTDIR}/prerequisites/xdg/compliance.sh"
 source "${ZDOTDIR}/bootstrap/install/update.sh"
-source "${ZDOTDIR}/bootstrap/config.sh"
+source "${ZDOTDIR}/bootstrap/install/config.sh"
 
 bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
 echo "Please restart your machine in order to ensure the zshenv file gets loaded properly"

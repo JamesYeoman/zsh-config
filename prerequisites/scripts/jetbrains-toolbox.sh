@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+source "$(realpath $(dirname $0))/../xdg/home.sh"
+
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
 curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
-installationLoc="${XDG_DATA_HOME:-$HOME/.local/share}/JetBrains/Toolbox"
+installationLoc="${XDG_DATA_HOME}/JetBrains/Toolbox"
 
-cat > "${XDG_CONFIG_HOME:-$HOME/.config}/autostart/jetbrains-toolbox.desktop" << EOF
+cat > "${XDG_CONFIG_HOME}/autostart/jetbrains-toolbox.desktop" << EOF
 [Desktop Entry]
 Exec=${installationLoc}/bin/jetbrains-toolbox --minimize
 Icon=${installationLoc}/toolbox.svg

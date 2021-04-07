@@ -1,4 +1,4 @@
-compFolder="${XDG_DATA_HOME:-$HOME_ROOT/share}/zsh/completions"
+compFolder="${XDG_DATA_HOME}/zsh/completions"
 
 export -U fpath=( "${compFolder}" "${fpath[@]}" )
 
