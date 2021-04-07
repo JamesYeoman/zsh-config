@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+source "$(realpath $(dirname $0))/../xdg/home.sh"
+
 GROUP_URL="https://github.com/rbenv"
-installloc="${XDG_DATA_HOME:-$HOME/.local/share}/rbenv"
+installloc="${XDG_DATA_HOME}/rbenv"
 TO_INSTALL=("autoconf" "bison" "build-essential")
 TO_INSTALL+=("libssl-dev" "libyaml-dev" "libreadline6-dev")
 TO_INSTALL+=("zlib1g-dev" "libncurses5-dev" "libffi-dev" "libgdbm6" "libgdbm-dev" "libdb-dev")

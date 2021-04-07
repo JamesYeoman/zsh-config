@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-JENV_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/jenv"
+source "$(realpath $(dirname $0))/../xdg/home.sh"
+
+JENV_ROOT="${XDG_DATA_HOME}/jenv"
 JVMS="/usr/lib/jvm"
 
 git clone "https://github.com/jenv/jenv.git" ${JENV_ROOT}

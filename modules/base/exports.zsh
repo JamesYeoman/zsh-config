@@ -8,7 +8,7 @@ export NEXUS_CREDS_LOC="${HOME_ROOT}/etc/dynamic/nexus"
 export NEXUS_USERNAME="$(cat ${NEXUS_CREDS_LOC}/username)"
 export NEXUS_PASSWORD="$(cat ${NEXUS_CREDS_LOC}/password)"
 export HELM_INSTALL="/opt/helm"
-export GOBIN="${XDG_DATA_HOME:-$HOME_ROOT/share}/go/bin"
+export GOBIN="${XDG_DATA_HOME}/go/bin"
 
 toaddtopath=(
 	"${HOME_ROOT}/bin"
