@@ -93,11 +93,11 @@ moveToConfigIfExists "${HOME}/.gitk" "git" "gitk"
 #endregion
 
 #region git version specific
-local gitVersion="$(git --version | sed 's/git version //')"
-local gitVersionArr="$(IFS='.' read -r -a array <<< "$gitVersion")"
+gitVersion="$(git --version | sed 's/git version //')"
+gitVersionArr="$(IFS='.' read -r -a array <<< "$gitVersion")"
 
 # If git > 2.x or git >= 2.4.x
-if [[ "${gitVersionArr[0]}" -gt 2]] || ([[ "${gitVersionArr[0]}" -eq 2 ]] && [[ "${gitVersionArr[1]}" -ge 4 ]]); then
+if [[ "${gitVersionArr[0]}" -gt 2 ]] || ([[ "${gitVersionArr[0]}" -eq 2 ]] && [[ "${gitVersionArr[1]}" -ge 4 ]]); then
     moveToConfigIfExists "${HOME}/.git-credentials" "git" "credentials"
 fi
 #endregion
