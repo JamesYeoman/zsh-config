@@ -20,39 +20,49 @@ function _is_a_file() {
 
 function _moveIfExists() {
     # $1 is the prefix path (e.g. XDG_DATA_HOME)
+    local prefixPath="$1"
     # $2 is the file or directory that needs moving
+    local toMove="$2"
     # $3 is the new directory name (name of the parent if $2 is a file) (ignored if $5 is set)
+    # (equivalent to $4 if $2 is a directory)
+    local newDirectoryName="$3"
     # (optional) $4 is the new name for the file (not used for directories)
+    local newFileName="${4:--1}"
     # (optional) $5 indicates that the move requires sudo (currently only used for XDG_RUNTIME_DIR)
+    local sudoFlag="${5:--1}"
 
-    local newPlace="$1/$3"
-    [[ "${5:-unset}" -eq "unset" ]] || newPlace="$1"
+    # Path of the destination folder
+    local newPlace="${prefixPath}/${newDirectoryName}"
+
+    # If the move requires sudo, then the destination folder will be the prefix path
+    [[ "${sudoFlag}" -eq -1 ]] || newPlace="${prefixPath}"
 
     # Files need additional processing before moving
-    if _is_a_file "$2" && [[ "${5:-unset}" -eq "unset" ]]; then
+    if _is_a_file "${toMove}" && [[ "${sudoFlag}" -eq -1 ]]; then
         # Make the new folder if it doesn't already exist
         [[ ! -d "${newPlace}" ]] && mkdir -p "${newPlace}"  
 
-        if [[ ! "${4:-unset}" -eq "unset" ]]; then
-            newPlace="${newPlace}/$4"
-        else
-            local filename="$(basename $(realpath $2))"
+        # If no newFileName defined, default to the name of the file to move
+        if [[ "${newFileName}" -eq -1 ]]; then
+            local filename="$(basename $(realpath ${toMove}))"
             newPlace="${newPlace}/${filename}"
+        else
+            newPlace="${newPlace}/${newFileName}"
         fi
-    elif ! _is_a_directory "$2"; then
+    elif ! _is_a_directory "${toMove}"; then
         # The file or directory isn't a valid path
-        echo "$2 doesn't exist in your home directory. Skipping."
+        echo "${toMove} doesn't exist in your home directory. Skipping."
         return
     fi
 
-    echo "Moving $2 to $newPlace"
+    echo "Moving ${toMove} to $newPlace"
     # Actually move the file or directory
-    [[ "${5:-unset}" -eq "unset" ]] && mv "$2" "${newPlace}" || sudo mv "$2" "${newPlace}"
+    [[ "${sudoFlag}" -eq -1 ]] && mv "${toMove}" "${newPlace}" || sudo mv "${toMove}" "${newPlace}"
     echo "Successfully moved"
 
-    if _is_a_file "$2"; then
+    if _is_a_file "${toMove}"; then
         # Remove the parent directory if this moved file is the final file in the directory
-        local parentDir="$(realpath $(dirname $2))"
+        local parentDir="$(realpath $(dirname ${toMove}))"
         [[ "$(ls -A ${parentDir})" ]] || rm -r "${parentDir}"
         echo "Successfully removed the now empty parent folder of ${parentDir}"
     fi
