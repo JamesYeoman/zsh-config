@@ -1,10 +1,22 @@
+mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh" "${HOME}/.m2"
 
-mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh"
+ETC_ZSH_ENV="
+export ZDOTDIR=\"\${XDG_CONFIG_HOME:-\$HOME/.config}/zsh\"
+source /etc/commonprofile
+"
 
-ETC_ZSH_ENV="\n\nexport ZDOTDIR=\"\${XDG_CONFIG_HOME:-\$HOME/.config}/zsh\"\n"
-
+# TODO: conditionally append, in order to support config version migration
 verboseLog "Installing a ZSH Env tweak to the global zshenv file"
-echo "${ETC_ZSH_ENV}" | sudo tee -a &>/dev/null
+echo "${ETC_ZSH_ENV}" | sudo tee -a /etc/zsh/zshenv &>/dev/null
+
+verboseLog "Since likely 99% of all scripts on your system use Bash,"
+verboseLog "it's necessary to give Bash access to XDG compliance."
+echo "source /etc/commonprofile" | sudo tee /etc/profile.d/01_common_shell_config.sh &>/dev/null
+
+verboseLog "Now it's time to link some files."
+
+verboseLog "Linking the common/commonprofile.sh to /etc/commonprofile"
+sudo ln -s "${ZDOTDIR}/common/commonprofile.sh" "/etc/commonprofile"
 
 # Link files rather than copying so that pulling updates cascades to the actual locations
 verboseLog "Linking files from the repo to their appropriate places"
@@ -19,7 +31,3 @@ for item in "${XDG_CACHE_HOME}"/m2/* ; do
 done
 
 ln -s "${XDG_CONFIG_HOME}/m2/settings.xml" "${HOME}/.m2/settings.xml"
-
-verboseLog "Since likely 99% of all scripts on your system use Bash,"
-verboseLog "it's necessary to give Bash access to XDG compliance."
-sudo ln -s "${ZDOTDIR}/prerequisites/profile.d/01_xdg_init.sh" "/etc/profile.d/01_xdg_init.sh"
