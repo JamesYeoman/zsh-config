@@ -4,6 +4,7 @@ loadModule "interactive/antigen"
 loadModule "interactive/completions"
 loadModule "interactive/misc"
 loadModule "interactive/fzf"
+loadModule "interactive/user_defs"
 
 # Sets the window title to the current directory
 case $TERM in
