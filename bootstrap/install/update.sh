@@ -10,7 +10,7 @@ toInstall=(
 verboseLog "Ensuring the following core debian deps are installed:"
 
 for dep in "${toInstall[@]}"; do
-local commentDep="${dep}"
+    commentDep="${dep}"
     case $dep in
     neofetch)
         commentDep="neofetch (because who doesn't want to occasionally show off their system)"
@@ -20,7 +20,9 @@ local commentDep="${dep}"
         ;;
     vim)
         commentDep="vim (for those that prefer or are used to vim)"
-    printf "\t${dep}\n"
+	;;
+    esac
+    printf "\t${commentDep}\n"
 done
 
 sudo apt-get -qqy install "${toInstall[@]}"
