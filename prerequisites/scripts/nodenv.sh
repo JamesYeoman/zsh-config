@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(realpath $(dirname $0))/../xdg/home.sh"
+source "$(realpath $(dirname $0))/../utils/ensure-variables-exist.sh"
 
 GROUP_URL="https://github.com/nodenv"
 INST="${XDG_DATA_HOME}/nodenv"

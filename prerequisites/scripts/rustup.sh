@@ -2,7 +2,7 @@
 
 # Installs Rustup in an xdg-compliant fashion
 
-source "$(realpath $(dirname $0))/../xdg/home.sh"
+source "$(realpath $(dirname $0))/../utils/ensure-variables-exist.sh"
 
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(realpath $(dirname $0))/../xdg/home.sh"
+source "$(realpath $(dirname $0))/../utils/ensure-variables-exist.sh"
 
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
 curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"

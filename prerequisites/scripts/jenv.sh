@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(realpath $(dirname $0))/../xdg/home.sh"
+source "$(realpath $(dirname $0))/../utils/ensure-variables-exist.sh"
 
 JENV_ROOT="${XDG_DATA_HOME}/jenv"
 JVMS="/usr/lib/jvm"
