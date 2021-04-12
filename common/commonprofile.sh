@@ -24,6 +24,8 @@ export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 export npm_config_cache="${XDG_CACHE_HOME}/npm"
 export SONAR_USER_HOME="${XDG_CACHE_HOME}/sonar"
 export SONARLINT_USER_HOME="${XDG_CACHE_HOME}/sonarlint"
+export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
+export XAUTHORITY="${XDG_CACHE_HOME}/Xauthority"
 
 # XDG_DATA_HOME variables
 export GRADLE_USER_HOME="${XDG_DATA_HOME}/gradle"
@@ -33,8 +35,5 @@ export MYSQL_HISTFILE="${XDG_DATA_HOME}/mysql/history"
 export MACHINE_STORAGE_PATH="${XDG_DATA_HOME}/docker-machine"
 export PLTUSERHOME="${XDG_DATA_HOME}/racket"
 
-# XDG_RUNTIME_DIR variables
-export ICEAUTHORITY="${XDG_RUNTIME_DIR}/ICEauthority"
-export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 #endregion
 
