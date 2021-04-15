@@ -9,10 +9,6 @@ endOfSection() {
 	printf "Done\n\n"
 }
 
-startOfSection "ZSH"
-sudo apt install -qqy zsh
-endOfSection
-
 startOfSection "Antigen to /usr/local/share/antigen"
 bash "${SCRIPTPATH}/antigen.sh"
 endOfSection
