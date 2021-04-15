@@ -26,5 +26,5 @@ source "${ZDOTDIR}/bootstrap/install/update.sh"
 source "${ZDOTDIR}/bootstrap/install/config.sh"
 
 bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
-echo "Please restart your machine in order to ensure the zshenv file gets loaded properly"
-echo "(because I don't know exactly the load rules for the zshenv file, but rebooting makes sure it gets loaded)"
+echo "Remember to run `chsh -s /bin/zsh` if you want to set ZSH as your default shell."
+echo "Also remember to log out and back in if you change your default shell."
