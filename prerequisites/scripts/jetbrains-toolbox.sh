@@ -3,7 +3,7 @@
 source "$(realpath $(dirname $0))/../utils/ensure-variables-exist.sh"
 
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
-curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
+curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g" &>/dev/null
 installationLoc="${XDG_DATA_HOME}/JetBrains/Toolbox"
 
 # Touching the file before writing to it in order to avoid "this file doesn't exist" error messages
@@ -30,8 +30,10 @@ EOF
 ./jetbrains-toolbox
 
 # Breaking up the disclaimer into multiple variables to make the lines actually fit reasonably inside an editor
-disclaimerLine1="Seeing as though it would take significant effort to try to detect whether or not Toolbox has finished bootstrapping itself, "
-disclaimerLine2="I decided to just leave cleanup to the end-user. So this disclaimer is me telling you that you need to delete the jetbrains-toolbox "
-disclaimerLine3="file (not jetbrains-toolbox.sh) ONLY AFTER the jetbrains toolbox window first appears."
-echo "${disclaimerLine1}${disclaimerLine2}${disclaimerLine3}"
+disclaimerLine1="Seeing as though it would take significant effort to try to detect whether or not Toolbox has finished \
+bootstrapping itself, I decided to just leave cleanup to the end-user.\n"
+disclaimerLine2="So this disclaimer is me telling you that you need to delete the jetbrains-toolbox \
+file (not jetbrains-toolbox.sh) ONLY AFTER the jetbrains toolbox window first appears."
+echo "${disclaimerLine1}"
+echo "${disclaimerLine2}"
 
