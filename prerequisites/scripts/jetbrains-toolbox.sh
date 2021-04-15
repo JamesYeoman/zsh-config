@@ -6,6 +6,7 @@ URL='https://data.services.jetbrains.com/products/download?platform=linux&code=T
 curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g"
 installationLoc="${XDG_DATA_HOME}/JetBrains/Toolbox"
 
+# Touching the file before writing to it in order to avoid "this file doesn't exist" error messages
 touch "${XDG_CONFIG_HOME}/autostart/jetbrains-toolbox.desktop"
 cat > "${XDG_CONFIG_HOME}/autostart/jetbrains-toolbox.desktop" << EOF
 [Desktop Entry]

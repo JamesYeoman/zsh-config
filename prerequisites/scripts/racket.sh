@@ -16,6 +16,8 @@ echo "Adding a custom Gnome Menu file so that XDG Compliance is session-wide"
 COMMENT="DrRacket is an interactive, integrated, graphical programming environment for the Racket programming languages."
 EXEC="env PLTUSERHOME=${XDG_DATA_HOME}/racket drracket -singleInstance %F"
 
+# Touching the desktop file before writing in order to avoid "file doesn't exist" error messages
+touch "${XDG_CONFIG_HOME}/applications/drracket.desktop"
 cat > "${XDG_CONFIG_HOME}/applications/drracket.desktop" << EOF
 [Desktop Entry]
 Name=DrRacket
