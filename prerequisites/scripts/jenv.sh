@@ -10,7 +10,7 @@ export PATH="${JENV_ROOT}/bin:${PATH}"
 eval "$(jenv init -)"
 
 for version in "${JVMS}"/*/; do
-    jenv add "${JVMS}/${version}"
+    jenv add "${version}"
 done
 
 jenv enable-plugin "maven"
