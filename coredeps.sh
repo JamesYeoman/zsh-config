@@ -21,8 +21,7 @@ sudo apt-get install -qq git
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
 
-source "${ZDOTDIR}/prerequisites/xdg/home.sh"
-source "${ZDOTDIR}/prerequisites/xdg/compliance.sh"
+source "${ZDOTDIR}/common/commonprofile.sh"
 source "${ZDOTDIR}/bootstrap/install/update.sh"
 source "${ZDOTDIR}/bootstrap/install/config.sh"
 
