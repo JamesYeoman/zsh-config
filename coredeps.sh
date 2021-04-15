@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-verboseSwitch="$1"
-verboseSwitch="$([[ "$verboseSwitch" == "-v" ]] && echo "true" || echo "false")"
 
 verboseLog() {
-  [[ "$verboseSwitch" == "true" ]] && echo "$1"
+  #TODO: Make pretty
+  echo "$1"
 }
 
 if ! command -v apt-get &>/dev/null; then
