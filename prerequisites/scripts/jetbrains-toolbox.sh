@@ -36,4 +36,3 @@ disclaimerLine2="So this disclaimer is me telling you that you need to delete th
 file (not jetbrains-toolbox.sh) ONLY AFTER the jetbrains toolbox window first appears."
 echo "${disclaimerLine1}"
 echo "${disclaimerLine2}"
-

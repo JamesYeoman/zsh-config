@@ -6,4 +6,3 @@ export fpath=(
 for file in "${ZDOTDIR}/autoload"/*; do
     autoload -Uz "$(basename "$file")"
 done
-

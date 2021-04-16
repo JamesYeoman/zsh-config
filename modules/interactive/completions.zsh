@@ -9,4 +9,3 @@ updateGoogleCompletions() {
   rm "${ZDOTDIR}/.zcompdump"
   compinit
 }
-
