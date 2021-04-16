@@ -5,13 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Fallback to the powerlevel9k config if powerlevel10k hasn't been configured
-[[ -f "${ZDOTDIR}/.p10k.zsh"  ]] || source "${ZDOTDIR}/powerlevel9kconfig.zsh"
+sourceIfNotExists "${ZDOTDIR}/user_defs/p10k.zsh" "${ZDOTDIR}/p9k.zsh"
 
 loadModule "interactive/antigen"
 loadModule "interactive/completions"
 loadModule "interactive/misc"
 loadModule "interactive/fzf"
-loadModule "interactive/user_defs"
+sourceIfExists "${ZDOTDIR}/user_defs/interactive.zsh"
 
 # Sets the window title to the current directory
 case $TERM in

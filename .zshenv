@@ -7,7 +7,7 @@ for mod in $mods; do
     loadModule "base/${mod}"
 done
 
-loadModule "base/user_defs"
+sourceIfExists "${ZDOTDIR}/user_defs/base.zsh"
 
 # Exports path in a way that there will be no duplicate path items from shell re-initialisation
 export -U PATH
