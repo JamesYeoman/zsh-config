@@ -5,13 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Fallback to the powerlevel9k config if powerlevel10k hasn't been configured
-sourceIfNotExists "${ZDOTDIR}/user_defs/p10k.zsh" "${ZDOTDIR}/p9k.zsh"
+sourceIfNotExists "${USER_DEFS}/p10k.zsh" "${ZDOTDIR}/p9k.zsh"
 
 loadModule "interactive/antigen"
 loadModule "interactive/completions"
 loadModule "interactive/misc"
 loadModule "interactive/fzf"
-sourceIfExists "${ZDOTDIR}/user_defs/interactive.zsh"
+sourceIfExists "${USER_DEFS}/interactive.zsh"
 
 # Sets the window title to the current directory
 case $TERM in
@@ -21,7 +21,7 @@ case $TERM in
 esac
 
 
-[[ -f "${ZDOTDIR}/.p10k.zsh" ]] && source "${ZDOTDIR}/.p10k.zsh"
+[[ -f "${USER_DEFS}/p10k.zsh" ]] && source "${USER_DEFS}/p10k.zsh"
 
 # Exports path in a way that there will be no duplicate path items from shell re-initialisation
 export -U PATH
