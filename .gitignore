@@ -1,5 +1,5 @@
 **/.zcompdump
 **/*.zwc
 .p10k.zsh
-/user_defs/
-!/user_defs/Readme.MD
+user_defs/*
+!user_defs/Readme.MD
