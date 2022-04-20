@@ -1,18 +1,22 @@
-ENV_COMMANDS=("jenv" "pyenv" "nodenv" "sbtenv" "scalaenv" "goenv" "rbenv")
-RUST_COMMANDS=("cargo" "rustup")
+XENV_COMMANDS=()
 
-for cmnd in $ENV_COMMANDS; do
-    dynamicExportIfExists "${XDG_DATA_HOME}" "${cmnd}" "_ROOT"
-done
-
-for cmnd in $RUST_COMMANDS; do
-    dynamicExportIfExists "${XDG_DATA_HOME}" "${cmnd}" "_HOME"
-done
-
-export -U PATH
-
-for cmnd in $ENV_COMMANDS; do
-    if testForCommand "$cmnd"; then
-        eval "$("$cmnd" init - zsh)" || eval "$("$cmnd" init -)"
+function exportEnvIfExists() {
+    local pth="${XDG_DATA_HOME}/$1"
+    if [[ -d "$pth" ]]; then
+        eval "export ${1:u}_ROOT=\"${pth}\""
+        path+="${pth}/bin"
+        XENV_COMMANDS+="$1"
     fi
-done
+}
+
+exportEnvIfExists "jenv"
+exportEnvIfExists "pyenv"
+exportEnvIfExists "nodenv"
+exportEnvIfExists "sbtenv"
+exportEnvIfExists "scalaenv"
+exportEnvIfExists "goenv"
+exportEnvIfExists "rbenv"
+exportEnvIfExists "phpenv"
+
+unset exportEnvIfExists
+export XENV_COMMANDS

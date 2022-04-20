@@ -2,13 +2,24 @@ source "${ZDOTDIR}/bootstrap/loading.sh"
 export ZMODDIR="${ZDOTDIR}/modules"
 export USER_DEFS="${ZDOTDIR}/user_defs"
 
-mods=( "core" "exports" "opts" "functions" "envs" "xdg" "misc" "aliases" )
 
-for mod in $mods; do
-    loadModule "base/${mod}"
-done
+loadModule "base/core"
+loadUserDef "base/core"
 
-sourceIfExists "${USER_DEFS}/base.zsh"
+loadModule "base/optional"
 
-# Exports path in a way that there will be no duplicate path items from shell re-initialisation
-export -U PATH
+loadModule "base/functions"
+loadUserDef "base/functions"
+
+loadModule "base/opts"
+loadUserDef "base/opts"
+
+loadModule "base/envs"
+
+loadModule "base/path"
+
+loadModule "base/postprocess"
+loadUserDef "base/postprocess"
+
+loadModule "base/aliases"
+loadUserDef "base/aliases"
