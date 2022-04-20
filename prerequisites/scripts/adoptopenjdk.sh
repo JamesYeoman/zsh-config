@@ -7,11 +7,21 @@ REPO="https://adoptopenjdk.jfrog.io/adoptopenjdk"
 KEYCHAIN_NAME="apt.adoptopenjdk"
 
 # Download the apt key and install to the keychain
+
+source "${SCRIPTLOC}/../utils/get-distro-name.sh"
+DISTRO_NAME="$(getDistroName)"
+
+if [[ "${DISTRO_NAME}" == "unknown" ]]; then
+    echo "lsb_release NOT FOUND!"
+    echo "Cannot determine the correct Apt repository without it!"
+    exit 1
+fi
+
 pushd "${SCRIPTLOC}/../utils"
 ./add-an-apt-repo.sh "${REPO}" \
                      "${KEYCHAIN_NAME}" \
                      "api/gpg/key/public" \
-                     "${REPO}/deb/ $(lsb_release -cs) main" \
+                     "${REPO}/deb/ ${DISTRO_NAME} main" \
                      "adoptopenjdk"
 popd
 

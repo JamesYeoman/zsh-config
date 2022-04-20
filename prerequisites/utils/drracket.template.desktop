@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DrRacket
+GenericName=IDE for Racket
+{{COMMENTLINE}}
+Terminal=false
+Type=Application
+Categories=Development;Education;
+{{EXECLINE}}
+Icon=racket-logo
+StartupNotify=true
+MimeType=text/x-scheme;
