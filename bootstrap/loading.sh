@@ -9,3 +9,7 @@ sourceIfNotExists() {
 loadModule() {
   sourceIfExists "${ZMODDIR}/${1}.zsh"
 }
+
+loadUserDef() {
+  sourceIfExists "${USER_DEFS}/${1}.zsh"
+}
