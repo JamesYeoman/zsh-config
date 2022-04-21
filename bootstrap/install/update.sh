@@ -23,7 +23,7 @@ for dep in "${toInstall[@]}"; do
         ;;
     vim)
         commentDep="vim (for those that prefer or are used to vim)"
-	    ;;
+        ;;
     esac
     verboseLog "\t${commentDep}"
 done

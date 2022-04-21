@@ -12,7 +12,6 @@ sudo apt update
 echo "Installing Racket"
 sudo apt install -qqy racket
 
-
 echo "Adding a custom Gnome Menu file so that XDG Compliance is session-wide"
 
 CFG_XDG="${XDG_CONFIG_HOME:-${HOME}/.config}"
@@ -31,6 +30,6 @@ fi
 
 # Touching the desktop file before writing in order to avoid "file doesn't exist" error messages
 touch "${CFG_XDG}/applications/drracket.desktop"
-cat "${ROOT}/../utils/drracket.template.desktop" \
-| sed "s:{{COMMENTLINE}}:Comment=$COMMENT:" \
-| sed "s:{{EXECLINE}}:Exec=$EXEC:" > "${CFG_XDG}/applications/drracket.desktop"
+cat "${ROOT}/../utils/drracket.template.desktop" |
+    sed "s:{{COMMENTLINE}}:Comment=$COMMENT:" |
+    sed "s:{{EXECLINE}}:Exec=$EXEC:" >"${CFG_XDG}/applications/drracket.desktop"
