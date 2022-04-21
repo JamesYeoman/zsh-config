@@ -23,9 +23,9 @@ fi
 # Sets the window title to the current directory (not sure how this works or where I got it from...)
 export DISABLE_AUTO_TITLE="true"
 case $TERM in
-  xterm*)
-    precmd () {print -Pn "\e]0;%~\a"}
-    ;;
+xterm*)
+  precmd() {print -Pn "\e]0;%~\a"}
+  ;;
 esac
 
 loadUserDef "interactive/init"

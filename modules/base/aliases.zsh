@@ -1,10 +1,10 @@
 aliasi=()
-pushd "${ZMODDIR}" > /dev/null
+pushd "${ZMODDIR}" >/dev/null
 for file in aliases/*; do
-  aliasi+=( "${file%.*}" )
+  aliasi+=("${file%.*}")
 done
-popd > /dev/null
+popd >/dev/null
 
 for subject in $aliasi; do
-    loadModule $subject
+  loadModule $subject
 done

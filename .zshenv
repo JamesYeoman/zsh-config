@@ -2,7 +2,6 @@ source "${ZDOTDIR}/bootstrap/loading.sh"
 export ZMODDIR="${ZDOTDIR}/modules"
 export USER_DEFS="${ZDOTDIR}/user_defs"
 
-
 loadModule "base/core"
 loadUserDef "base/core"
 

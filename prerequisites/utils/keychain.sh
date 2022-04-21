@@ -9,16 +9,16 @@ KEY_INSTALL="/usr/share/keyrings/${FILENAME}"
 wget -q "${URL}" -O "${TMP_FILE}"
 
 # Check for ASCII-Armoured GPG key
-if file "${TMP_FILE}" | grep "PGP public key block" ; then
+if file "${TMP_FILE}" | grep "PGP public key block"; then
     # De-armour the GPG key
     mv "${TMP_FILE}" "${TMP_FILE}.bak"
-    cat "${TMP_FILE}.bak" | gpg --dearmor > "${TMP_FILE}"
+    cat "${TMP_FILE}.bak" | gpg --dearmor >"${TMP_FILE}"
     rm "${TMP_FILE}.bak"
 fi
 
 # The GPG key is now definitely unarmoured
 
-if [[ ! -d "/usr/share/keyrings" ]] ; then
+if [[ ! -d "/usr/share/keyrings" ]]; then
     sudo mkdir /usr/share/keyrings
     sudo chmod 755 /usr/share/keyrings
 fi

@@ -13,7 +13,12 @@ if ! command -v apt-get &>/dev/null; then
 fi
 
 echo "Checking sudo privilages"
-sudo echo "Successful" || (echo "Insufficient privilages" && exit 1)
+if sudo echo "test message"; then
+  echo "Successful"
+else
+  echo "Insufficient privilages"
+  exit 1
+fi
 
 verboseLog "Installing git"
 sudo apt-get install -qq git
@@ -26,5 +31,5 @@ source "${ZDOTDIR}/bootstrap/install/update.sh"
 source "${ZDOTDIR}/bootstrap/install/config.sh"
 
 bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
-echo "Remember to run `chsh -s /bin/zsh` if you want to set ZSH as your default shell."
+echo "Remember to run \$(chsh -s /bin/zsh) if you want to set ZSH as your default shell."
 echo "Also remember to log out and back in if you change your default shell."

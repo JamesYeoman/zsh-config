@@ -5,11 +5,11 @@ function getDistroName() {
     fi
 
     case "$(lsb_release -is)" in
-        "Linuxmint")
-            grep 'DISTRIB_CODENAME' /etc/upstream-release/lsb-release | awk -F '=' '{print $2}'
-            ;;
-        *)
-            lsb_release -cs
-            ;;
+    "Linuxmint")
+        grep 'DISTRIB_CODENAME' /etc/upstream-release/lsb-release | awk -F '=' '{print $2}'
+        ;;
+    *)
+        lsb_release -cs
+        ;;
     esac
 }
