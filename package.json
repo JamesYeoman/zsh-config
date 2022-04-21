@@ -1,0 +1,7 @@
+{
+    "name": "zshconfig",
+    "private": true,
+    "devDependencies": {
+        "prettier": "2.6.2"
+    }
+}
