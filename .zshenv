@@ -1,3 +1,5 @@
+zstyle ':completion:*' completer _complete _ignored cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+
 source "${ZDOTDIR}/bootstrap/loading.sh"
 export ZMODDIR="${ZDOTDIR}/modules"
 export USER_DEFS="${ZDOTDIR}/user_defs"

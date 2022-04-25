@@ -1,6 +1,6 @@
-source "${ZDOTDIR}/bootstrap/loading.sh"
+zstyle ':completion:*' completer _complete _ignored cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
 
-zstyle ':completion:*' completer _complete _ignored
+source "${ZDOTDIR}/bootstrap/loading.sh"
 
 # Fallback to the powerlevel9k config if powerlevel10k hasn't been configured
 if [[ ! -f "${USER_DEFS}/p10k.zsh" ]]; then
