@@ -11,19 +11,18 @@ KEYCHAIN_NAME="apt.adoptopenjdk"
 source "${SCRIPTLOC}/../utils/get-distro-name.sh"
 DISTRO_NAME="$(getDistroName)"
 
-if [[ "${DISTRO_NAME}" == "unknown" ]]; then
+if [[ "$DISTRO_NAME" == "unknown" ]]; then
     echo "lsb_release NOT FOUND!"
     echo "Cannot determine the correct Apt repository without it!"
     exit 1
 fi
 
-pushd "${SCRIPTLOC}/../utils"
-./add-an-apt-repo.sh "${REPO}" \
-    "${KEYCHAIN_NAME}" \
+echo "Adding the Adoptopenjdk JFrog APT repository"
+"$SCRIPTLOC"/../utils/add-an-apt-repo.sh "$REPO" \
+    "$KEYCHAIN_NAME" \
     "api/gpg/key/public" \
     "${REPO}/deb/ ${DISTRO_NAME} main" \
     "adoptopenjdk"
-popd
 
 echo "Updating the Apt Cache"
 sudo apt update
@@ -31,5 +30,5 @@ sudo apt update
 JDK_VERSIONS=(adoptopenjdk-8-hotspot adoptopenjdk-8-hotspot-jre)
 JDK_VERSIONS+=(adoptopenjdk-11-hotspot adoptopenjdk-11-hotspot-jre)
 
-echo "Installing the AdoptOpenJDK versions"
+echo "Installing AdoptOpenJDK versions 8 and 11"
 sudo apt install "${JDK_VERSIONS[@]}"

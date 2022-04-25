@@ -10,7 +10,7 @@ toInstall=(
 verboseLog "Ensuring the following core debian deps are installed:"
 
 for dep in "${toInstall[@]}"; do
-    commentDep="${dep}"
+    commentDep="$dep"
     case $dep in
     zsh)
         commentDep="zsh (what's the point of a ZSH configuration without ZSH?)"
@@ -25,7 +25,7 @@ for dep in "${toInstall[@]}"; do
         commentDep="vim (for those that prefer or are used to vim)"
         ;;
     esac
-    verboseLog "\t${commentDep}"
+    verboseLog "\t$commentDep"
 done
 
 sudo apt-get -qqy install "${toInstall[@]}"

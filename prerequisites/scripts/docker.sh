@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 echo "Ensuring Ubuntu-maintained docker isn't installed"
-sudo apt-get remove docker docker-engine docker.io containerd runc &&
-    echo "success" ||
-    echo "An error occured. It's probably just that there were packages that weren't installed"
+sudo apt-get remove docker docker-engine docker.io containerd runc
+    && echo "success"
+    || echo "An error occured. It's probably just that there were packages that weren't installed"
 
 SCRIPTLOC="$(realpath $(dirname $0))"
 
@@ -20,14 +20,13 @@ if [[ "${DISTRO_NAME}" == "unknown" ]]; then
 fi
 
 # Download the apt key and install to the keychain
-pushd "${SCRIPTLOC}/../utils"
-./add-an-apt-repo.sh "${REPO}" \
-    "${KEYCHAIN_NAME}" \
+echo "Adding the Docker APT repository"
+"$SCRIPTLOC"/../utils/add-an-apt-repo.sh "$REPO" \
+    "$KEYCHAIN_NAME" \
     "gpg" \
     "${REPO} ${DISTRO_NAME} stable" \
     "docker" \
     "arch=amd64"
-popd
 
 echo "Installing Docker"
 sudo apt update

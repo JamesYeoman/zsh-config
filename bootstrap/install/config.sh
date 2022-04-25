@@ -27,7 +27,7 @@ ln -s "${ZDOTDIR}/dotfiles/settings.xml" "${XDG_CONFIG_HOME}/m2/settings.xml"
 verboseLog "Linking XDG-Compliant maven files to the default locations"
 for item in "${XDG_CACHE_HOME}"/m2/*; do
   itemname="$(basename $item)"
-  ln -s "${item}" "${HOME}/.m2/${itemname}"
+  ln -s "$item" "${HOME}/.m2/$itemname"
 done
 
 ln -s "${XDG_CONFIG_HOME}/m2/settings.xml" "${HOME}/.m2/settings.xml"
