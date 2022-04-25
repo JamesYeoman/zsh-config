@@ -2,4 +2,9 @@
 
 source "$(realpath $(dirname $0))/../utils/ensure-xdg-folders-exist.sh"
 
-git clone https://github.com/pyenv/pyenv.git "${XDG_DATA_HOME:-${HOME}/.local/share}/pyenv"
+export PYENV_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/pyenv"
+git clone "https://github.com/pyenv/pyenv.git" "$PYENV_ROOT"
+
+export PATH="${PYENV_ROOT}/bin:$PATH"
+
+eval "$(pyenv init -)"

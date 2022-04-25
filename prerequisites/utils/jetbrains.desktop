@@ -1,6 +1,4 @@
 [Desktop Entry]
-{{EXECLINE}}
-{{ICONLINE}}
 MimeType=x-scheme-handler/jetbrains;
 Name=JetBrains Toolbox
 StartupNotify=false
