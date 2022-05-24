@@ -15,57 +15,58 @@ echo "${BG_BLACK}${FG_CYAN}Press any key to acknowledge the above disclaimer$ALL
 read -s
 
 #region functions
-function _is_a_directory() {
-    [[ -d "$1" ]] && return 0 || return 1
-}
 
-function _is_a_file() {
-    [[ -f "$1" ]] && return 0 || return 1
-}
-
+# $1 is the prefix path (e.g. XDG_DATA_HOME)
+#   - if $5 is set, this is the destination folder
+# $2 is the file or directory that needs moving
+# $3 is the new directory name
+#   - name of the parent if $2 is a file
+#   - equivalent to $4 if $2 is a directory
+#   - ignored if $5 is set
+# $4 is the new name for the file
+#   - optional
+#   - not used for directories
+# $5 indicates that the move requires sudo
+#   - optional
+#   - currently only used for XDG_RUNTIME_DIR
 function _moveIfExists() {
-    # $1 is the prefix path (e.g. XDG_DATA_HOME)
     local prefixPath="$1"
-    # $2 is the file or directory that needs moving
     local toMove="$2"
-    # $3 is the new directory name (name of the parent if $2 is a file) (ignored if $5 is set)
-    # (equivalent to $4 if $2 is a directory)
     local newDirectoryName="$3"
-    # (optional) $4 is the new name for the file (not used for directories)
-    local newFileName="${4:--1}"
-    # (optional) $5 indicates that the move requires sudo (currently only used for XDG_RUNTIME_DIR)
-    local sudoFlag="${5:--1}"
-
-    # Path of the destination folder
-    local newPlace="${prefixPath}/$newDirectoryName"
-
-    # If the move requires sudo, then the destination folder will be the prefix path
-    [[ "$sudoFlag" -eq -1 ]] || newPlace="$prefixPath"
-
-    # Files need additional processing before moving
-    if _is_a_file "$toMove" && [[ "$sudoFlag" -eq -1 ]]; then
-        # Make the new folder if it doesn't already exist
-        [[ ! -d "$newPlace" ]] && mkdir -p "$newPlace"
-
-        # If no newFileName defined, default to the name of the file to move
-        if [[ "$newFileName" -eq -1 ]]; then
-            local filename="$(basename $(realpath $toMove))"
-            newPlace="${newPlace}/$filename"
-        else
-            newPlace="${newPlace}/$newFileName"
-        fi
-    elif ! _is_a_directory "$toMove"; then
-        # The file or directory isn't a valid path
+    local newFileName="$4"
+    local sudoFlag="$5"
+    
+    if [[ ! -e "$toMove" ]]; then
         echo "${toMove} doesn't exist in your home directory. Skipping."
         return
     fi
 
+    local newPlace="${prefixPath}/$newDirectoryName"
+
+    if [[ -n "$sudoFlag" ]]; then
+        newPlace="$prefixPath"
+    elif [[ -f "$toMove" ]]; then # Non-sudo files need additional processing before moving
+        if [[ ! -d "$newPlace" ]]; then
+            mkdir -p "$newPlace"
+        fi
+
+        if [[ -n "$newFileName" ]]; then
+            newPlace="${newPlace}/$newFileName"
+        else
+            local filename="$(basename $(realpath $toMove))"
+            newPlace="${newPlace}/$filename"
+        fi
+    fi
+
     echo "Moving ${toMove} to $newPlace"
-    # Actually move the file or directory
-    [[ "$sudoFlag" -eq -1 ]] && mv "$toMove" "$newPlace" || sudo mv "$toMove" "$newPlace"
+    if [[ -n "$sudoFlag" ]]; then
+        sudo mv "$toMove" "$newPlace"
+    else
+        mv "$toMove" "$newPlace"
+    fi
     echo "Successfully moved"
 
-    if _is_a_file "$toMove"; then
+    if [[ -f "$toMove" ]]; then
         # Remove the parent directory if this moved file is the final file in the directory
         local parentDir="$(realpath $(dirname ${toMove}))"
         [[ "$(ls -A $parentDir)" ]] || rm -r "$parentDir"
@@ -193,8 +194,10 @@ sectionHeader "Misc Data" "Files"
 #region files
 moveToDataIfExists "${HOME}/.lesshst" "less" "history"
 moveToDataIfExists "${HOME}/.mysql_history" "mysql" "history"
-#endregion
+moveToDataIfExists "${HOME}/.bash_history" "bash" "history"
+moveToDataIfExists "${HOME}/.zsh_history" "zsh" "history"
 sectionHeader "End Files" "Directories"
+#endregion
 
 #region directories
 moveToDataIfExists "${HOME}/.gradle" "gradle"
