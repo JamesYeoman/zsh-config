@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# If linuxbrew is installed
+if command -v brew &>/dev/null; then
+    brew install yarn
+    exit 0
+fi
+
 SCRIPTLOC="$(realpath $(dirname $0))"
 
 REPO="https://dl.yarnpkg.com/debian"

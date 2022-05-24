@@ -1,12 +1,14 @@
-compFolder="${XDG_DATA_HOME}/zsh/completions"
+# For some reason, only the completion scripts are split off into /usr/share...
+if [[ -f "/usr/share/google-cloud-sdk/completion.zsh.inc" ]]; then
+  if [[ ! -f "${ZDOTDIR}/completions/_gcloud" ]]; then
+    ln -s "/usr/share/google-cloud-sdk/completion.zsh.inc" "${ZDOTDIR}/completions/_gcloud"
+  fi
+fi
 
-fpath+="${compFolder}"
-export -U fpath
+if (( ${+commands[kubectl]} )) && [[ ! -f "${ZDOTDIR}/completions/_kubectl" ]]; then
+  kubectl completion zsh >"${ZDOTDIR}/completions/_kubectl"
+fi
 
-updateGoogleCompletions() {
-  echo "#compdef gcloud" >"${compFolder}/_gcloud"
-  cat "/usr/share/google-cloud-sdk/completion.zsh.inc" >>"$compFolder/_gcloud"
-  kubectl completion zsh >"$compFolder/_kubectl"
-  rm "${ZDOTDIR}/.zcompdump"
-  compinit
-}
+if (( $+commands[sbt] )) && [[ ! -f "${ZDOTDIR}/completions/_sbt" ]]; then
+  curl "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sbt/_sbt" --output "${ZDOTDIR}/completions/_sbt"
+fi

@@ -19,6 +19,12 @@ wget -qO- https://raw.githubusercontent.com/JamesYeoman/zsh-config/master/corede
 chsh -s /path/to/zsh
 ```
 
+## Migration
+
+- This repo (`$ZDOTDIR`) should no longer exist in `$XDG_CONFIG_HOME/zsh`. It should exist in `/opt/zshconf`.
+- User config should no longer exist in `$ZDOTDIR/user_defs`. It should exist in `$ZDOTDIR/user/$USER`.
+
+
 ## List of planned changes
 
 - [x] Make a post on reddit
@@ -36,3 +42,4 @@ chsh -s /path/to/zsh
 
 - [User Definitions](./docs/userdefs.MD)
 - [Script Load Order](./docs/loadorder.MD)
+
