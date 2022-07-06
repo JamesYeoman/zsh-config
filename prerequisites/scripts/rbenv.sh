@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-source "$(realpath $(dirname $0))/../utils/ensure-xdg-folders-exist.sh"
+source "${INSTALLER_ROOT}/utils/ensure-xdg-folders-exist.sh"
 
 GROUP_URL="https://github.com/rbenv"
 export RBENV_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/rbenv"
