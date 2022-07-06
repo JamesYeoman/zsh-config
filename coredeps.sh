@@ -30,6 +30,10 @@ source "${ZDOTDIR}/common/commonprofile.sh"
 source "${ZDOTDIR}/bootstrap/install/update.sh"
 source "${ZDOTDIR}/bootstrap/install/config.sh"
 
-bash "${ZDOTDIR}/prerequisites/install_prerequisites.sh"
+bash "${ZDOTDIR}/prerequisites/installer.sh" -m "zshfont"
+
+echo "Not choosing a zsh plugin manager for you. Choose between Antigen and ZI."
+echo "Use ${ZDOTDIR}/prerequisites/installer.sh to install any additional tools (e.g. a plugin manager)."
+echo ""
 echo "Remember to run \$(chsh -s /bin/zsh) if you want to set ZSH as your default shell."
 echo "Also remember to log out and back in if you change your default shell."
