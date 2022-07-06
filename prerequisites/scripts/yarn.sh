@@ -1,18 +1,14 @@
-#!/usr/bin/env bash
-
 # If linuxbrew is installed
 if command -v brew &>/dev/null; then
     brew install yarn
     exit 0
 fi
 
-SCRIPTLOC="$(realpath $(dirname $0))"
-
 REPO="https://dl.yarnpkg.com/debian"
 KEYCHAIN_NAME="apt.yarn"
 
 # Download the apt key and install to the keychain
-"$SCRIPTLOC"/../utils/add-an-apt-repo.sh "$REPO" \
+"$INSTALLER_ROOT"/utils/add-an-apt-repo.sh "$REPO" \
     "$KEYCHAIN_NAME" \
     "pubkey.gpg" \
     "${REPO}/ stable main" \

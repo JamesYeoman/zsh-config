@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 echo "Adding the AdoptOpenJDK APT Repo"
 SCRIPTLOC="$(realpath $(dirname $0))"
 
@@ -8,7 +6,7 @@ KEYCHAIN_NAME="apt.adoptopenjdk"
 
 # Download the apt key and install to the keychain
 
-source "${SCRIPTLOC}/../utils/get-distro-name.sh"
+source "${INSTALLER_ROOT}/utils/get-distro-name.sh"
 DISTRO_NAME="$(getDistroName)"
 
 if [[ "$DISTRO_NAME" == "unknown" ]]; then
@@ -18,7 +16,7 @@ if [[ "$DISTRO_NAME" == "unknown" ]]; then
 fi
 
 echo "Adding the Adoptopenjdk JFrog APT repository"
-"$SCRIPTLOC"/../utils/add-an-apt-repo.sh "$REPO" \
+"$INSTALLER_ROOT"/utils/add-an-apt-repo.sh "$REPO" \
     "$KEYCHAIN_NAME" \
     "api/gpg/key/public" \
     "${REPO}/deb/ ${DISTRO_NAME} main" \

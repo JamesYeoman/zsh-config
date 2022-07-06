@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-source "$(realpath $(dirname $0))/../utils/ensure-xdg-folders-exist.sh"
+source "${INSTALLER_ROOT}/utils/ensure-xdg-folders-exist.sh"
 
 export JENV_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/jenv"
 

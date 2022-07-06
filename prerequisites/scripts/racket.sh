@@ -1,7 +1,4 @@
-#!/usr/bin/env bash
-
-ROOT="$(realpath $(dirname $0))"
-source "${ROOT}/../utils/ensure-xdg-folders-exist.sh"
+source "${INSTALLER_ROOT}/utils/ensure-xdg-folders-exist.sh"
 
 echo "Adding the Racket APT Repository"
 sudo add-apt-repository --yes ppa:plt/racket
@@ -22,4 +19,4 @@ if [[ -z "${DATA_XDG}/racket" ]]; then
 fi
 
 installParams=(--dir="${DATA_XDG}/applications" --rebuild-mime-info-cache --set-key="Exec" --set-value="$EXEC")
-desktop-file-install "${installParams[@]}" "${ROOT}/../utils/drracket.desktop"
+desktop-file-install "${installParams[@]}" "${INSTALLER_ROOT}/utils/drracket.desktop"
