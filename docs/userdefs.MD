@@ -9,14 +9,14 @@ flowchart LR
     subgraph interactive["interactive/ (Loaded in .zshrc)"]
         30["./"]
         31["init.zsh"]
-        32["completions.zsh"]
-        33["antigen.zsh"]
-        34["misc.zsh"]
+        32["misc.zsh"]
+        33["[plugin manager].zsh"]
+        34["completions.zsh"]
         35["finalise.zsh"]
 
         30 --> 31
         30 --> 32
-        30 --"Loaded by this repo's<br/> interactive/antigen.zsh"--> 33
+        30 --"Loaded by this repo's<br/> interactive/[plugin manager].zsh"--> 33
         30 --> 34
         30 --> 35
     end
@@ -36,8 +36,8 @@ flowchart LR
         20 --> 25
     end
 
-    subgraph root["user_defs/"]
-        00["./"]
+    subgraph root["User Defintions"]
+        00["user/$USER"]
         01["base/"]
         02["interactive/"]
         03["p10k.zsh"]

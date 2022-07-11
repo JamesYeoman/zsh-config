@@ -24,7 +24,28 @@ verboseLog "Installing git"
 sudo apt-get install -qq git
 
 export ZDOTDIR="/opt/zshconf"
-git clone "https://github.com/JamesYeoman/zsh-config.git" "$ZDOTDIR"
+sudo git clone "https://github.com/JamesYeoman/zsh-config.git" "$ZDOTDIR"
+sudo chmod -R 755 "$ZDOTDIR"
+
+sudo chmod 777 "${ZDOTDIR}/user"
+user_conf_loc="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
+if [[ ! -d "$user_conf_loc" ]]; then
+  mkdir -p "$user_conf_loc"
+fi
+
+ln -s "$user_conf_loc" "${ZDOTDIR}/user/$USER"
+chmod -R 700 "${ZDOTDIR}/user/$USER"
+
+echo "Symlinked \$XDG_CONFIG_HOME/zsh to \$ZDOTDIR/user/\$USER"
+echo "Put any config overrides in \$XDG_CONFIG_HOME/zsh (if XDG_CONFIG_HOME wasn't set, this has defaulted to \$HOME/.config/zsh."
+echo "Only you can read, write, and execute stuff in that folder."
+
+sudo chmod 777 "${ZDOTDIR}/completions"
+mkdir "${ZDOTDIR}/completions/$USER"
+chmod 700 "${ZDOTDIR}/completions/$USER"
+
+echo "Created \$ZDOTDIR/completions/\$USER."
+echo "Place any custom completion scripts into that folder. Only you can read, write, and execute stuff in that folder."
 
 source "${ZDOTDIR}/common/commonprofile.sh"
 source "${ZDOTDIR}/bootstrap/install/update.sh"

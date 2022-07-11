@@ -1,7 +1,8 @@
 **/.zcompdump
 **/*.zwc
 .p10k.zsh
-/user
-user_defs/
 node_modules/
-completions/
+/completions
+/user
+!/completions/.gitkeep
+!/user/.gitkeep
