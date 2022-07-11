@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 INSTALLER_ROOT="$(realpath $(dirname $0))"
 
-INST_MODULE=unset
-
+pushd $INSTALLER_ROOT
 modules_tmp=( $(ls scripts) )
+popd
 available_modules=( )
 for inst in "${modules_tmp[@]}"; do
     available_modules+=("${inst%.sh}")
@@ -49,14 +49,14 @@ while [ "$#" -gt "0" ]; do
 done
 
 
-if [[ "$INST_MODULE" == "unset" ]]; then
+if [[ -z "$INST_MODULE" ]]; then
     usage
 fi
 
 if ! [[ " ${available_modules[@]} " =~ " $INST_MODULE " ]]; then
-    echo "Could not find module ${MODULE} in ${INSTALLER_ROOT}/scripts."
+    echo "Could not find module ${INST_MODULE} in ${INSTALLER_ROOT}/scripts."
     exit 1
 fi
 
 source "${INSTALLER_ROOT}/utils/ensure-xdg-folders-exist.sh"
-source "${INSTALLER_ROOT}/scripts/${MODULE}.sh"
+source "${INSTALLER_ROOT}/scripts/${INST_MODULE}.sh"
