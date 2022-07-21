@@ -13,6 +13,9 @@ fi
 loadModule "base/core"
 loadUserDef "base/core"
 
+loadModule "base/history"
+loadUserDef "base/history"
+
 loadModule "base/optional"
 
 loadModule "base/functions"

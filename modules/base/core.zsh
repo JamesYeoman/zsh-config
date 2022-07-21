@@ -6,11 +6,13 @@ export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 
 [[ ! -d "$BIN_HOME" ]] && mkdir -p "$BIN_HOME"
 
-HISTFILE="${XDG_CACHE_HOME}/zsh/history"
 
 # Set history size to 10k lines
-HISTSIZE=10000
-HISTFILESIZE=$HISTSIZE
+export HISTSIZE=10000
+export HISTFILESIZE=$HISTSIZE
+export SAVEHIST=$HISTSIZE
+
+export HISTFILE="${XDG_CACHE_HOME}/zsh/history"
 
 # ISO FORMAT!!!!! WOOP!!!!!
-HIST_STAMPS="yyyy-mm-dd"
+export HIST_STAMPS="yyyy-mm-dd"
