@@ -114,8 +114,12 @@ else
   echo "${APPIMAGE_BIN} does not exist! Please create it, take ownership of it, and give it 754 permissions"
 fi
 
-if ! [[ ":${XCURSOR_PATH}:" =~ ":${XDG_DATA_HOME}/icons:" ]]; then
-  export XCURSOR_PATH="${XCURSOR_PATH}:${XDG_DATA_HOME}/icons"
+if [[ -z "$XCURSOR_PATH" ]]; then
+  if [[ -f "/etc/commonprofile.d/cursor_path/$USER" ]] && [[ -r "/etc/commonprofile.d/cursor_path/$USER" ]]; then
+    export XCURSOR_PATH="$(cat /etc/commonprofile.d/cursor_path/$USER)"
+  else
+    export XCURSOR_PATH="${XDG_DATA_HOME}/icons:/usr/share/icons"
+  fi
 fi
 
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
