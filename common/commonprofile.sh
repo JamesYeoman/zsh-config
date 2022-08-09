@@ -122,6 +122,10 @@ if [[ -z "$XCURSOR_PATH" ]]; then
   fi
 fi
 
-export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+export ERRFILE="${XDG_STATE_HOME}/X11/xsession-errors"
+
+if [[ ! -d "${XDG_STATE_HOME}/X11" ]]; then
+  mkdir -p "${XDG_STATE_HOME}/X11"
+fi
 
 #endregion
