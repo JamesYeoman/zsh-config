@@ -68,18 +68,7 @@ export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
 #endregion
 
 #region XDG Compliance aliases
-
 alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
-
-#endregion
-
-#region Histfile setup
-
-if [[ -n "$ZSH_VERSION" ]]; then
-  PROFILE_SHELL=zsh
-elif [[ -n "$BASH_VERSION" ]]; then
-  PROFILE_SHELL=bash
-fi
 
 #endregion
 
