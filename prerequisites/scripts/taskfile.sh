@@ -3,6 +3,11 @@ if command -v task > /dev/null; then
     exit 0
 fi
 
+if command -v brew > /dev/null; then
+    brew install go-task/tap/go-task
+    exit 0
+fi
+
 SYS_INSTALL=1
 
 if [[ -z "$TASKFILE_INSTALLER_SYS_INSTALL" ]]; then
