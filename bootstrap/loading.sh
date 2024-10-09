@@ -1,5 +1,5 @@
 sourceIfExists() {
-    [[ -e "$1" ]] && source "$1"
+  [[ -e "$1" ]] && source "$1"
 }
 
 sourceIfNotExists() {

@@ -9,4 +9,3 @@ fi
 if [[ -z "${XDG_CACHE_HOME:-${HOME}/.cache}" ]]; then
     mkdir -p "${XDG_CACHE_HOME:-${HOME}/.cache}"
 fi
-

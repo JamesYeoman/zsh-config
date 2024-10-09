@@ -17,9 +17,9 @@ installationLoc="${XDG_DATA_HOME:-${HOME}/.local/share}/JetBrains/Toolbox"
 # Touching the file before writing to it in order to avoid "this file doesn't exist" error messages
 touch "${CFG_XDG}/autostart/jetbrains-toolbox.desktop"
 
-cat "${ROOT}/../utils/jetbrains.template.desktop" \
-| sed "s:{{EXECLINE}}:Exec=${installationLoc}/bin/jetbrains-toolbox --minimize:" \
-| sed "s:{{ICONLINE}}:Icon=${installationLoc}/toolbox.svg:" > "${CFG_XDG}/autostart/jetbrains-toolbox.desktop"
+cat "${ROOT}/../utils/jetbrains.template.desktop" |
+    sed "s:{{EXECLINE}}:Exec=${installationLoc}/bin/jetbrains-toolbox --minimize:" |
+    sed "s:{{ICONLINE}}:Icon=${installationLoc}/toolbox.svg:" >"${CFG_XDG}/autostart/jetbrains-toolbox.desktop"
 
 # This should download Jetbrains Toolbox to the ~/.local/share/Jetbrains/Toolbox folder
 # If not, this script will need rethinking

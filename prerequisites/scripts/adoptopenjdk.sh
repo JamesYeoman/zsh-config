@@ -19,10 +19,10 @@ fi
 
 pushd "${SCRIPTLOC}/../utils"
 ./add-an-apt-repo.sh "${REPO}" \
-                     "${KEYCHAIN_NAME}" \
-                     "api/gpg/key/public" \
-                     "${REPO}/deb/ ${DISTRO_NAME} main" \
-                     "adoptopenjdk"
+    "${KEYCHAIN_NAME}" \
+    "api/gpg/key/public" \
+    "${REPO}/deb/ ${DISTRO_NAME} main" \
+    "adoptopenjdk"
 popd
 
 echo "Updating the Apt Cache"

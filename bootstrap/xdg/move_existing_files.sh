@@ -40,7 +40,7 @@ function _moveIfExists() {
     # Files need additional processing before moving
     if _is_a_file "${toMove}" && [[ "${sudoFlag}" -eq -1 ]]; then
         # Make the new folder if it doesn't already exist
-        [[ ! -d "${newPlace}" ]] && mkdir -p "${newPlace}"  
+        [[ ! -d "${newPlace}" ]] && mkdir -p "${newPlace}"
 
         # If no newFileName defined, default to the name of the file to move
         if [[ "${newFileName}" -eq -1 ]]; then
@@ -94,7 +94,7 @@ moveToConfigIfExists "${HOME}/.gitk" "git" "gitk"
 
 #region git version specific
 gitVersion="$(git --version | sed 's/git version //')"
-gitVersionArr="$(IFS='.' read -r -a array <<< "$gitVersion")"
+gitVersionArr="$(IFS='.' read -r -a array <<<"$gitVersion")"
 
 # If git > 2.x or git >= 2.4.x
 if [[ "${gitVersionArr[0]}" -gt 2 ]] || ([[ "${gitVersionArr[0]}" -eq 2 ]] && [[ "${gitVersionArr[1]}" -ge 4 ]]); then
@@ -158,7 +158,7 @@ moveToDataIfExists "${HOME}/.mysql_history" "mysql" "history"
 #region directories
 moveToDataIfExists "${HOME}/.gradle" "gradle"
 moveToDataIfExists "${HOME}/.docker/machine" "docker-machine"
-moveToDataIfExists "${HOME}/.racket" "racket" 
+moveToDataIfExists "${HOME}/.racket" "racket"
 moveToDataIfExists "${HOME}/go" "go"
 #endregion
 #endregion

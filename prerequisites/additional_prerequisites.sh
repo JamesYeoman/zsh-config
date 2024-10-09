@@ -30,4 +30,3 @@ echo "Not auto-installing editors, because they're more of a personal preference
 echo "If you want to have either of the following editors installed, there are scripts provided"
 printf "\tJetbrains Toolbox (for Intellij IDEA)\n"
 printf "\tVS Code\n\n"
-
