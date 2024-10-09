@@ -23,7 +23,7 @@ chsh -s /path/to/zsh
 
 - [x] Make a post on reddit
   - This lets people critisize the hell out of this config
-  (constructive criticism) so I can make it an even better config
+    (constructive criticism) so I can make it an even better config
 - [x] Make user overrides completely separate from the core config
   - This means having all user override files in their own folder
     - Implementation is a user_defs folder (see the User Definitions
