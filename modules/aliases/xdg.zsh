@@ -7,7 +7,3 @@ if testForCommand xbindkeys; then
     [[ ! -d "${XDG_DATA_HOME}/xbindkeys" ]] && mkdir -p "${XDG_DATA_HOME}/xbindkeys"
     alias xbindkeys="xbindkeys -f ${XDG_DATA_HOME}/xbindkeys/rc -fg ${XDG_DATA_HOME}/xbindkeys/rc.scm"
 fi
-
-if testForCommand xclip; then
-    alias clipboard='xclip -selection clipboard'
-fi
