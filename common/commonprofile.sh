@@ -81,10 +81,6 @@ elif [[ -n "$BASH_VERSION" ]]; then
   PROFILE_SHELL=bash
 fi
 
-if [[ -n "$PROFILE_SHELL" ]]; then
-  export HISTFILE="${XDG_DATA_HOME}/${PROFILE_SHELL}/history"
-fi
-
 #endregion
 
 #region linuxbrew

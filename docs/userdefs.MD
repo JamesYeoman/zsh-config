@@ -24,8 +24,8 @@ flowchart LR
     subgraph base["base/ (loaded in .zshenv)"]
         20["./"]
         21["core.zsh"]
-        22["functions.zsh"]
-        23["opts.zsh"]
+        22["history.zsh"]
+        23["functions.zsh"]
         24["postprocess.zsh"]
         25["aliases.zsh"]
 
