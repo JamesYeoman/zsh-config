@@ -118,4 +118,10 @@ else
   echo "${APPIMAGE_BIN} does not exist! Please create it, take ownership of it, and give it 754 permissions"
 fi
 
+if ! [[ ":${XCURSOR_PATH}:" =~ ":${XDG_DATA_HOME}/icons:" ]]; then
+  export XCURSOR_PATH="${XCURSOR_PATH}:${XDG_DATA_HOME}/icons"
+fi
+
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
 #endregion
