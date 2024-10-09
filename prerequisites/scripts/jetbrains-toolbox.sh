@@ -4,31 +4,29 @@ ROOT="$(realpath $(dirname $0))"
 
 source "${ROOT}/../utils/ensure-xdg-folders-exist.sh"
 
-CFG_XDG="${XDG_CONFIG_HOME:-${HOME}/.config}"
+DATA_XDG="${XDG_DATA_HOME:-${HOME}/.local/share}"
 
-if [[ -z "${CFG_XDG}/autostart" ]]; then
-    mkdir "${CFG_XDG}/autostart"
-fi
-
+echo "Downloading Jetbrains Toolbox"
 URL='https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
-curl -fsSL $URL | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g" &>/dev/null
-installationLoc="${XDG_DATA_HOME:-${HOME}/.local/share}/JetBrains/Toolbox"
+curl -fsSL "$URL" | tar -zxv --strip-components 1 --transform="s/jetbrains-toolbox*/jetbrains-toolbox/g" &>/dev/null
+installationLoc="${DATA_XDG}/JetBrains/Toolbox"
 
-# Touching the file before writing to it in order to avoid "this file doesn't exist" error messages
-touch "${CFG_XDG}/autostart/jetbrains-toolbox.desktop"
+echo "Installing a desktop entry for Jetbrains Toolbox"
+EXEC="${installationLoc}/bin/jetbrains-toolbox"
+ICON="${installationLoc}/toolbox.svg"
 
-cat "${ROOT}/../utils/jetbrains.template.desktop" |
-    sed "s:{{EXECLINE}}:Exec=${installationLoc}/bin/jetbrains-toolbox --minimize:" |
-    sed "s:{{ICONLINE}}:Icon=${installationLoc}/toolbox.svg:" >"${CFG_XDG}/autostart/jetbrains-toolbox.desktop"
+installParams=(--dir="${DATA_XDG}/applications" --rebuild-mime-info-cache --set-key="Exec" --set-value="$EXEC" --set-icon="$ICON")
+desktop-file-install "${installParams[@]}" "$ROOT"/../utils/jetbrains.desktop
 
-# This should download Jetbrains Toolbox to the ~/.local/share/Jetbrains/Toolbox folder
+# This should download Jetbrains Toolbox to the ~/.local/share/JetBrains/Toolbox folder
 # If not, this script will need rethinking
+echo "Starting Jetbrains Toolbox"
 ./jetbrains-toolbox
 
 # Breaking up the disclaimer into multiple variables to make the lines actually fit reasonably inside an editor
 disclaimerLine1="Seeing as though it would take significant effort to try to detect whether or not Toolbox has finished \
 bootstrapping itself, I decided to just leave cleanup to the end-user."
-disclaimerLine2="So this disclaimer is me telling you that you need to delete the jetbrains-toolbox \
-file (not jetbrains-toolbox.sh) ONLY AFTER the jetbrains toolbox window first appears."
-echo "${disclaimerLine1}"
-echo "${disclaimerLine2}"
+disclaimerLine2="So this disclaimer is me telling you that you need to delete ${ROOT}/jetbrains-toolbox \
+(not ${ROOT}jetbrains-toolbox.sh) ONLY AFTER the jetbrains toolbox window first appears."
+echo "$disclaimerLine1"
+echo "$disclaimerLine2"

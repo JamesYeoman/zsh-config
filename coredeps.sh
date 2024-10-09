@@ -24,7 +24,7 @@ verboseLog "Installing git"
 sudo apt-get install -qq git
 
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-git clone "https://github.com/JamesYeoman/zsh-config.git" "${ZDOTDIR}"
+git clone "https://github.com/JamesYeoman/zsh-config.git" "$ZDOTDIR"
 
 source "${ZDOTDIR}/common/commonprofile.sh"
 source "${ZDOTDIR}/bootstrap/install/update.sh"

@@ -10,13 +10,11 @@ REPO="https://t-5.eu/debian"
 KEYCHAIN_NAME="apt.t5.eu"
 
 # Download the apt key and install to the keychain
-pushd "${SCRIPTLOC}/../utils"
-./add-an-apt-repo.sh "${REPO}" \
-    "${KEYCHAIN_NAME}" \
+"$SCRIPTLOC"/../utils/add-an-apt-repo.sh "$REPO" \
+    "$KEYCHAIN_NAME" \
     "pubkey.txt" \
     "${REPO}/ repo main" \
     "t5.eu"
-popd
 
 sudo apt update -qq
 sudo apt install pulseaudio-parametric-eq
