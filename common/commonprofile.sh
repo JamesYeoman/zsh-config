@@ -18,6 +18,7 @@ fi
 export npm_config_userconfig="${XDG_CONFIG_HOME}/npm/npmrc"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 
 # XDG_CACHE_HOME variables
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
@@ -34,3 +35,4 @@ export MACHINE_STORAGE_PATH="${XDG_DATA_HOME}/docker-machine"
 export PLTUSERHOME="${XDG_DATA_HOME}/racket"
 
 #endregion
+ 
