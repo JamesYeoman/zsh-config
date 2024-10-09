@@ -16,7 +16,7 @@ for dep in "${toInstall[@]}"; do
         commentDep="zsh (what's the point of a ZSH configuration without ZSH?)"
         ;;
     neofetch)
-        commentDep="neofetch (because who doesn't want to occasionally show off their system)"
+        commentDep="neofetch (prints some useful information)"
         ;;
     nano)
         commentDep="nano (for those that just want a simple CLI text editor) (set as the default editor)"
