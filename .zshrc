@@ -1,5 +1,3 @@
-zstyle ':completion:*' completer _ignored _complete
-
 source "${ZDOTDIR}/bootstrap/loading.sh"
 
 # Sets the window title to the current directory (not sure how this works or where I got it from...)
@@ -13,15 +11,26 @@ esac
 loadUserDef "interactive/init"
 loadModule "interactive/init"
 
-loadModule "interactive/completions"
-loadUserDef "interactive/completions"
-
 loadModule "interactive/misc"
 loadUserDef "interactive/misc"
 
-loadModule "interactive/antigen"
+case "$ZSH_PLUGIN_MANAGER" in
+  antigen)
+    MANAGER_INSTALL_LOC="$ANTIGEN_INSTALL"
+    MANAGER_MODULE="antigen"
+    ;;
+  zi)
+    MANAGER_INSTALL_LOC="${ZI[HOME_DIR]}"
+    MANAGER_MODULE="zi"
+    ;;
+esac
 
-loadUserDef "interactive/finalise"
+if [[ -d "$MANAGER_INSTALL_LOC" ]]; then
+  loadModule "interactive/$MANAGER_MODULE"
+fi
+
+loadModule "interactive/completions"
+loadUserDef "interactive/completions"
 
 if command -v p10k 2>&1 >/dev/null; then
   if [[ -f "${USER_DEFS}/p10k.zsh" ]]; then
@@ -49,3 +58,5 @@ fi
 
 # Exports path in a way that there will be no duplicate path items from shell re-initialisation
 export -U path
+
+loadUserDef "interactive/finalise"
