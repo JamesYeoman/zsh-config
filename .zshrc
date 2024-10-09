@@ -40,8 +40,8 @@ if command -v p10k 2>&1 >/dev/null; then
     if [[ "${P9K_SUPPRESS_WARNING:-0}" == 0 ]]; then
       echo "No Powerlevel10k config specified. Defaulting to the Powerlevel9k config."
       echo "Run 'p10k configure' to generate your config"
-      printf "(and then move the generated file to user_defs/p10k.zsh).\n\n"
-      echo "Add 'export P9K_SUPPRESS_WARNING=1' to /opt/zshconf/user/${USER}/interactive/init.zsh in order to suppress this message."
+      printf "(and then move the generated file to ${USER_DEFS}/p10k.zsh).\n\n"
+      echo "Add 'export P9K_SUPPRESS_WARNING=1' to ${USER_DEFS}/interactive/init.zsh in order to suppress this message."
     fi
 
     source "${ZDOTDIR}/p9k.zsh"
