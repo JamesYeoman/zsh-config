@@ -2,7 +2,7 @@
 **/*.zwc
 .p10k.zsh
 node_modules/
-/completions
-/user
-!/completions/.gitkeep
-!/user/.gitkeep
+completions/*
+user/*
+!user/.gitkeep
+!completions/.gitkeep

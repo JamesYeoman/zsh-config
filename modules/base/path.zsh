@@ -1,4 +1,5 @@
-path+="$BIN_HOME"
+# Prepend the user's local bin folder in order to take precedence
+path=("$BIN_HOME" $path)
 
 if (( ${+HELM_INSTALL} )); then
     path+="${HELM_INSTALL}/bin"

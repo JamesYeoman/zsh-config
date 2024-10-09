@@ -1,6 +1,6 @@
 echo "Ensuring Ubuntu-maintained docker isn't installed"
-sudo apt-get remove docker docker-engine docker.io containerd runc
-    && echo "success"
+sudo apt-get remove docker docker-engine docker.io containerd runc \
+    && echo "success" \
     || echo "An error occured. It's probably just that there were packages that weren't installed"
 
 REPO="https://download.docker.com/linux/ubuntu"

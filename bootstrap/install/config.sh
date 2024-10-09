@@ -1,6 +1,10 @@
 # Ensure the config directories exist
 mkdir -p "${XDG_CONFIG_HOME}/vim" "${XDG_CONFIG_HOME}/npm"
 
+if [[ ! -f "${XDG_CONFIG_HOME}/vim/vimrc" ]]; then
+  touch "${XDG_CONFIG_HOME}/vim/vimrc"
+fi
+
 # Ensure the cache directories exist
 mkdir -p "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh"
 
