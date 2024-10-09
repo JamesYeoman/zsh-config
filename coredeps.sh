@@ -26,7 +26,7 @@ sudo apt-get install -qq git
 export ZDOTDIR="/opt/zshconf"
 sudo git clone "https://github.com/JamesYeoman/zsh-config.git" "$ZDOTDIR"
 sudo chmod -R 755 "$ZDOTDIR"
-
+sudo mkdir -p "${ZDOTDIR}/user"
 sudo chmod 777 "${ZDOTDIR}/user"
 user_conf_loc="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
 if [[ ! -d "$user_conf_loc" ]]; then
