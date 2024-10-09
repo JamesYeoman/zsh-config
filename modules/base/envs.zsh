@@ -12,6 +12,7 @@ function exportEnvIfExists() {
             # https://github.com/syndbg/goenv/issues/99#issuecomment-829783709
             # mentions that $GOENV_ROOT/shims is at the beginning of $PATH,
             # and it hasn't been fixed yet.
+            export GOENV_GOPATH_PREFIX="${XDG_DATA_HOME}/go"
             ;;
         *)
             path+="${pth}/bin"
@@ -27,7 +28,6 @@ exportEnvIfExists "nodenv"
 exportEnvIfExists "sbtenv"
 exportEnvIfExists "scalaenv"
 exportEnvIfExists "goenv"
-export GOENV_GOPATH_PREFIX="${XDG_DATA_HOME}/go"
 exportEnvIfExists "rbenv"
 exportEnvIfExists "phpenv"
 
