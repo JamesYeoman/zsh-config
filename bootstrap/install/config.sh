@@ -1,4 +1,11 @@
-mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh" "${HOME}/.m2"
+# Ensure the config directories exist
+mkdir -p "${XDG_CONFIG_HOME}/m2" "${XDG_CONFIG_HOME}/vim"
+
+# Ensure the cache directories exist
+mkdir -p "${XDG_CACHE_HOME}/m2/repository" "${XDG_CACHE_HOME}/m2/wrapper" "${XDG_CACHE_HOME}/zsh"
+
+# Stubborn maven wrapper...
+mkdir -p "${HOME}/.m2"
 
 ETC_ZSH_ENV="
 export ZDOTDIR=\"\${XDG_CONFIG_HOME:-\$HOME/.config}/zsh\"
@@ -21,6 +28,7 @@ sudo ln -s "${ZDOTDIR}/common/commonprofile.sh" "/etc/commonprofile"
 # Link files rather than copying so that pulling updates cascades to the actual locations
 verboseLog "Linking files from the repo to their appropriate places"
 ln -s "${ZDOTDIR}/dotfiles/settings.xml" "${XDG_CONFIG_HOME}/m2/settings.xml"
+ln -s "${ZDOTDIR}/dotfiles/xdgrc.vim" "${XDG_CONFIG_HOME}/vim/xdgrc.vim"
 
 # Link XDG-compliant maven locations to the default location for compatibility with
 # stubborn applications like Maven Wrapper that don't support overriding

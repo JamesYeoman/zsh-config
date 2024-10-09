@@ -157,11 +157,18 @@ sectionHeader "End Rust" "End SDK/Language Managers"
 sectionHeader "Misc Config" "Files"
 #region files
 moveToConfigIfExists "${HOME}/.npmrc" "npm" "npmrc"
+moveToConfigIfExists "${HOME}/.vimrc" "vim" "vimrc"
+moveToConfigIfExists "${HOME}/.viminfo" "vim" "viminfo"
 #endregion
 
 sectionHeader "End Files" "Directories"
 
 #region directories
+if [[ -d "${HOME}/.vim" ]]; then
+    for vimitem in "$HOME"/.vim/*; do
+        moveToConfigIfExists "$vimitem" "vim" "$(basename $vimitem)"
+    done
+fi
 moveToConfigIfExists "${HOME}/.gnupg" "gnupg"
 moveToConfigIfExists "${HOME}/.docker" "docker"
 #endregion
