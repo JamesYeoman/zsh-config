@@ -1,8 +1,14 @@
-zstyle ':completion:*' completer _complete _ignored cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+skip_global_compinit=1
 
 source "${ZDOTDIR}/bootstrap/loading.sh"
 export ZMODDIR="${ZDOTDIR}/modules"
-export USER_DEFS="${ZDOTDIR}/user_defs"
+export USER_DEFS="${ZDOTDIR}/user/$USER"
+
+user_defs_stat="$(stat -c '%a' $APPIMAGE_BIN)"
+if getfacl -p "$USER_DEFS" | grep 'group::\|other::' | grep '.w.' 2>&1 >/dev/null; then
+    echo "${USER_DEFS} is writable by others than yourself!"
+    echo "${USER_DEFS} should only be writable by you!"
+fi
 
 loadModule "base/core"
 loadUserDef "base/core"
