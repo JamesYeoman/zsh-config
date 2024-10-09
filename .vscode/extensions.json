@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "bierner.markdown-mermaid",
+        "aaron-bond.better-comments",
+        "mads-hartmann.bash-ide-vscode",
+        "esbenp.prettier-vscode"
+    ]
+}

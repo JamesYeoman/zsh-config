@@ -29,11 +29,19 @@ case $TERM in
 esac
 
 loadUserDef "interactive/init"
+
 loadModule "interactive/antigen"
+
 loadModule "interactive/completions"
+loadUserDef "interactive/completions"
+
 loadModule "interactive/misc"
+loadUserDef "interactive/misc"
+
 loadModule "interactive/fzf"
+
 loadUserDef "interactive/finalise"
+
 loadUserDef "p10k"
 
 # Exports path in a way that there will be no duplicate path items from shell re-initialisation
