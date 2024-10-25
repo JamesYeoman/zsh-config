@@ -19,6 +19,10 @@ case "$ZSH_PLUGIN_MANAGER" in
     MANAGER_INSTALL_LOC="$ANTIGEN_INSTALL"
     MANAGER_MODULE="antigen"
     ;;
+  antidote)
+    MANAGER_INSTALL_LOC="$ANTIDOTE_INSTALL"
+    MANAGER_MODULE="antidote"
+    ;;
   zi)
     MANAGER_INSTALL_LOC="${ZI[HOME_DIR]}"
     MANAGER_MODULE="zi"

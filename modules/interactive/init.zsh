@@ -1,18 +1,29 @@
-function antigen_setup() {
+fpath+="${ZDOTDIR}/completions/$USER"
+export -U fpath
+
+function crawl() {
+    local name="$1"
+    shift
+
     local possible_locations=(
-        "${XDG_DATA_HOME}/antigen" # Install location used by the antigen prerequisites script
-        "/usr/share/zsh-antigen"   # sudo apt-get install zsh-antigen
-        "${HOME}/.antigen"         # Left over from an old, non-xdg-compliant config, before using this config
+        "${XDG_DATA_HOME}/$name" # Default install location
+        "${HOME}/.$name" # Left over from a previous non-xdg-compliant install
+        $@
     )
 
     local foundLoc="none"
-
     for loc in $possible_locations; do
         if [[ -d "$loc" ]]; then
             foundLoc="$loc"
             break;
         fi
     done
+
+    echo $foundLoc
+}
+
+function antigen_setup() {
+    local foundLoc="$(crawl "antigen" "/usr/share/zsh-antigen")"
 
     if [[ "$foundLoc" == "none" ]]; then
         echo "Antigen not found."
@@ -21,9 +32,18 @@ function antigen_setup() {
     else
         export ANTIGEN_INSTALL="$foundLoc"
     fi
+}
 
-    fpath+="${ZDOTDIR}/completions/$USER"
-    export -U fpath
+function antidote_setup() {
+    local foundLoc="$(crawl "antidote")"
+
+    if [[ "$foundLoc" == "none" ]]; then
+        echo "Antidote not found."
+        echo "If you have Antidote installed, it's in an unconventional location."
+        echo "Please set ANTIDOTE_INSTALL in ${ZDOTDIR}/user_defs/interactive/init.zsh"
+    else
+        export ANTIDOTE_INSTALL="$foundLoc"
+    fi
 }
 
 function zi_setup() {
@@ -45,6 +65,9 @@ case "${ZSH_PLUGIN_MANAGER:-antigen}" in
     "antigen")
         antigen_setup
         ;;
+    "antidote")
+        antidote_setup
+        ;;
     "zi")
         zi_setup
         ;;
@@ -56,3 +79,9 @@ case "${ZSH_PLUGIN_MANAGER:-antigen}" in
         fi
         ;;
 esac
+
+unset antigen_setup
+unset antidote_setup
+unset zi_setup
+
+unset crawl
