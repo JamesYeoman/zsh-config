@@ -1,6 +1,3 @@
-fpath+="${ZDOTDIR}/completions/$USER"
-export -U fpath
-
 function crawl() {
     local name="$1"
     shift
@@ -32,6 +29,9 @@ function antigen_setup() {
     else
         export ANTIGEN_INSTALL="$foundLoc"
     fi
+
+    fpath+="${ZDOTDIR}/completions/$USER"
+    export -U fpath
 }
 
 function antidote_setup() {
@@ -44,6 +44,9 @@ function antidote_setup() {
     else
         export ANTIDOTE_INSTALL="$foundLoc"
     fi
+
+    fpath+="${ZDOTDIR}/completions/$USER"
+    export -U fpath
 }
 
 function zi_setup() {
