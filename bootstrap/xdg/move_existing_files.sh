@@ -136,6 +136,7 @@ sectionHeader "End Files" "End X Utils"
 sectionHeader "SDK/Language Managers" "Envs"
 
 #region envs
+moveToDataIfExists "${HOME}/.asdf" "asdf"
 moveToDataIfExists "${HOME}/.jenv" "jenv"
 moveToDataIfExists "${HOME}/.pyenv" "pyenv"
 moveToDataIfExists "${HOME}/.nodenv" "nodenv"

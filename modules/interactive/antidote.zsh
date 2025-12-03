@@ -35,7 +35,7 @@ function construct_plugins() {
 
     echo "romkatv/powerlevel10k"
 
-    if [[ -f "${USER_DEFS}/interactive/antidote.zsh"]]; then
+    if [[ -f "${USER_DEFS}/interactive/antidote.zsh" ]]; then
         cat "${USER_DEFS}/interactive/antidote.zsh"
     fi
 }

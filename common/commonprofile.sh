@@ -63,6 +63,9 @@ export MACHINE_STORAGE_PATH="${XDG_DATA_HOME}/docker-machine"
 export PLTUSERHOME="${XDG_DATA_HOME}/racket"
 export GOPATH="${XDG_DATA_HOME}/go"
 export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
+export ASDF_DIR="${XDG_DATA_HOME}/asdf/core"
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf/data"
+export ASDF_CONFIG_FILE="${XDG_DATA_HOME}/asdf/.asdfrc"
 
 #endregion
 

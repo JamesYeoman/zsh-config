@@ -1,8 +1,11 @@
-#!/usr/bin/env zsh
 if [[ -z "$ZSH_VERSION" ]]; then
 	echo "Not running in ZSH! Aborting!"
 	exit 1
 fi
+
+echo "Value of ZI"
+echo "$ZI[HOME_DIR]"
+
 if [[ -z "$ZI" ]]; then
 	echo "Could not find '$$ZI[HOME_DIR]'! Please export ZI[HOME_DIR] to specify the root for all ZI-related files!"
 	echo "Make sure the folder exists too. Recommended location is $${XDG_DATA_HOME:-$$HOME/.local/share}/zi"

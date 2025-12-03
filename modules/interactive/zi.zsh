@@ -36,6 +36,8 @@ if (( $+commands[pip] )); then
     zi snippet 'OMZP::pip/_pip'
 fi    
 
+loadUserDef "interactive/zi"
+
 zi wait lucid for \
     atinit"zicompinit; zicdreplay" \
     z-shell/F-Sy-H \
@@ -45,4 +47,4 @@ zi wait lucid for \
 zi ice depth=1
 zi load "romkatv/powerlevel10k"
 
-loadUserDef "interactive/zi"
+loadUserDef "interactive/zi_last"

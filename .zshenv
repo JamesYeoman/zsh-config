@@ -25,6 +25,7 @@ loadUserDef "base/opts"
 loadModule "base/envs"
 
 loadModule "base/path"
+loadUserDef "base/path"
 
 loadModule "base/postprocess"
 loadUserDef "base/postprocess"
