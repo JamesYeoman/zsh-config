@@ -1,6 +1,6 @@
 # Allows for overriding of the XDG variables, and any other pre-setup you want
-if [[ -f "${ZDOTDIR}/user/$USER/common.sh" ]]; then
-  source "${ZDOTDIR}/user/$USER/common.sh"
+if [[ -f "${ZDOTDIR}/user/$USER/precommon.sh" ]]; then
+  source "${ZDOTDIR}/user/$USER/precommon.sh"
 fi
 
 #region XDG Home Variables initialisation
@@ -120,3 +120,9 @@ if [[ ! -d "${XDG_STATE_HOME}/X11" ]]; then
 fi
 
 #endregion
+
+# Allows for overriding of any env vars that have been set, and any other post-setup you want
+if [[ -f "${ZDOTDIR}/user/$USER/postcommon.sh" ]]; then
+  source "${ZDOTDIR}/user/$USER/postcommon.sh"
+fi
+
